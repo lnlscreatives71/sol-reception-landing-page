@@ -621,9 +621,9 @@
        values from your form — see FORM_SETUP.md for how to find them. */
     (function initForm() {
       // https://docs.google.com/forms/d/e/<FORM_ID>/formResponse
-      const FORM_ACTION = '';
-      const ENTRY_NAME  = ''; // e.g. 'entry.1234567890'
-      const ENTRY_EMAIL = ''; // e.g. 'entry.0987654321'
+      const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScUS3lNKrk_jT2cVfWhmk21B3GtvUpqul7YlnI0QuSUaaCh6Q/formResponse';
+      const ENTRY_NAME  = 'entry.153343481';
+      const ENTRY_EMAIL = 'entry.1640856880';
 
       const f = document.getElementById('lead-form');
       const s = document.getElementById('form-success');
@@ -642,6 +642,11 @@
         const payload = new URLSearchParams();
         payload.append(ENTRY_NAME, f.elements.name.value.trim());
         payload.append(ENTRY_EMAIL, f.elements.email.value.trim());
+        // The form has "Collect email addresses" enabled, which requires this
+        // extra field — submissions 400 without it.
+        payload.append('emailAddress', f.elements.email.value.trim());
+        payload.append('fvv', '1');
+        payload.append('pageHistory', '0');
 
         const btn = f.querySelector('button[type=submit]');
         const label = btn.textContent;
