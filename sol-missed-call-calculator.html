@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missed-Call Revenue Calculator — Sol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171311; --sun:#F2A93B; --clay:#C75B39; --cream:#FBF6EE;
+    --sage:#2E7D5B; --muted:#6E645C; --line:#E7DDCE; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:'Inter',system-ui,sans-serif; color:var(--ink); background:var(--cream); line-height:1.6; padding:32px 16px}
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif; font-weight:500; line-height:1.12}
+  .card{max-width:920px; margin:0 auto; background:var(--card); border:1px solid var(--line); border-radius:24px; overflow:hidden; box-shadow:0 24px 60px -30px rgba(23,19,17,.35)}
+  .logo{font-family:'Fraunces',serif; font-weight:600; font-size:24px; display:flex; align-items:center; gap:8px}
+  .logo .sun{width:20px; height:20px; border-radius:50%; background:var(--sun); flex:none}
+  .head{padding:28px 36px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px}
+  .head .tag{font-size:13px; color:var(--muted)}
+  .body{display:grid; grid-template-columns:1fr 1fr; gap:0}
+  .inputs{padding:36px}
+  .results{padding:36px; background:var(--ink); color:var(--cream)}
+  .eyebrow{text-transform:uppercase; letter-spacing:2px; font-size:11px; font-weight:600; color:var(--clay); margin-bottom:18px}
+  .results .eyebrow{color:var(--sun)}
+  h1{font-size:30px; letter-spacing:-.6px; margin-bottom:6px}
+  .intro{font-size:15px; color:var(--muted); margin-bottom:26px}
+
+  .field{margin-bottom:24px}
+  .field label{display:block; font-weight:500; font-size:15px; margin-bottom:6px}
+  .field .hint{font-size:13px; color:var(--muted); margin-bottom:10px}
+  .field .valrow{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px}
+  .field .val{font-family:'Fraunces',serif; font-size:22px; font-weight:600; color:var(--clay)}
+  input[type=range]{width:100%; -webkit-appearance:none; appearance:none; height:6px; border-radius:999px; background:var(--line); outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--sun); border:3px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.25); cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%; background:var(--sun); border:3px solid #fff; cursor:pointer}
+  .vsel{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+  .vchip{border:1.5px solid var(--line); background:#fff; padding:7px 13px; border-radius:999px; font-size:13px; font-weight:500; cursor:pointer; color:var(--muted); transition:all .12s ease}
+  .vchip:hover{border-color:var(--clay)}
+  .vchip.on{background:var(--ink); color:#fff; border-color:var(--ink)}
+
+  .big{font-family:'Fraunces',serif; font-weight:600; font-size:58px; line-height:1; color:var(--sun); letter-spacing:-1.5px}
+  .biglab{font-size:14px; color:#cdbfb2; margin:8px 0 26px}
+  .rrow{display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid #2d2622; font-size:15px}
+  .rrow:last-of-type{border-bottom:none}
+  .rrow .lbl{color:#cdbfb2}
+  .rrow .amt{font-weight:600; font-family:'Fraunces',serif; font-size:18px}
+  .recover{background:rgba(46,125,91,.16); border:1px solid rgba(46,125,91,.5); border-radius:14px; padding:16px 18px; margin-top:22px}
+  .recover .t{font-size:13px; color:#9fe3c2; font-weight:500; margin-bottom:3px}
+  .recover .v{font-family:'Fraunces',serif; font-weight:600; font-size:26px; color:#fff}
+  .cta{display:block; text-align:center; background:var(--sun); color:var(--ink); text-decoration:none; font-weight:600; padding:15px; border-radius:999px; margin-top:24px; font-size:16px; border:none; width:100%; cursor:pointer; font-family:inherit}
+  .cta:hover{background:#e89a26}
+  .capture{margin-top:14px; display:flex; gap:8px}
+  .capture input{flex:1; padding:13px 15px; border-radius:999px; border:1px solid #3a322c; background:#221d19; color:#fff; font-size:14px; font-family:inherit}
+  .capture input::placeholder{color:#8a7d72}
+  .fine{font-size:12px; color:#8a7d72; margin-top:14px; text-align:center}
+  .okmsg{display:none; color:#9fe3c2; font-size:14px; font-weight:500; margin-top:12px; text-align:center}
+  .foot{padding:18px 36px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); text-align:center}
+  @media(max-width:760px){ .body{grid-template-columns:1fr} .big{font-size:46px} }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="logo"><span class="sun"></span> sol</div>
+    <div class="tag">Free tool · Missed-Call Revenue Calculator</div>
+  </div>
+
+  <div class="body">
+    <div class="inputs">
+      <p class="eyebrow">Your business</p>
+      <h1>What are missed calls costing you?</h1>
+      <p class="intro">Move the sliders to match your business. Your number updates live.</p>
+
+      <div class="field">
+        <div class="valrow"><label for="calls">Calls you get per day</label><span class="val" id="callsV">30</span></div>
+        <input type="range" id="calls" min="5" max="150" step="1" value="30">
+      </div>
+
+      <div class="field">
+        <div class="valrow"><label for="missed">% of calls missed or sent to voicemail</label><span class="val" id="missedV">35%</span></div>
+        <p class="hint">Most service businesses miss 20–60%, especially after hours and during the rush.</p>
+        <input type="range" id="missed" min="5" max="80" step="1" value="35">
+      </div>
+
+      <div class="field">
+        <label for="value">Average value of a new customer</label>
+        <p class="hint">Pick the closest, or set it with the slider.</p>
+        <div class="vsel" id="chips">
+          <span class="vchip" data-v="250">$250</span>
+          <span class="vchip on" data-v="500">$500</span>
+          <span class="vchip" data-v="1000">$1,000</span>
+          <span class="vchip" data-v="2500">$2,500</span>
+          <span class="vchip" data-v="5000">$5,000</span>
+        </div>
+        <div class="valrow" style="margin-top:14px"><span class="hint" style="margin:0">Custom value</span><span class="val" id="valueV">$500</span></div>
+        <input type="range" id="value" min="100" max="8000" step="50" value="500">
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <div class="valrow"><label for="conv">Of the calls you miss, % you'd have won as a customer</label><span class="val" id="convV">18%</span></div>
+        <p class="hint">Not every call is a new customer — set this to the share of missed calls that were real opportunities you'd have closed.</p>
+        <input type="range" id="conv" min="5" max="50" step="1" value="18">
+      </div>
+    </div>
+
+    <div class="results">
+      <p class="eyebrow">Your missed-call cost</p>
+      <div class="big" id="annual">$0</div>
+      <div class="biglab">in lost revenue per year</div>
+
+      <div class="rrow"><span class="lbl">Calls missed per day</span><span class="amt" id="rMissed">0</span></div>
+      <div class="rrow"><span class="lbl">Lost customers per month</span><span class="amt" id="rLostMo">0</span></div>
+      <div class="rrow"><span class="lbl">Lost revenue per month</span><span class="amt" id="rMonth">$0</span></div>
+
+      <div class="recover">
+        <div class="t">If Sol answered the calls you miss, you could recover about</div>
+        <div class="v" id="recover">$0 / year</div>
+      </div>
+
+      <button class="cta" id="cta">Stop the leak — get early access</button>
+      <div class="capture" id="capture">
+        <input type="email" id="email" placeholder="Email me my results + early access">
+        <button class="cta" style="width:auto; margin:0; padding:13px 18px" id="send">Send</button>
+      </div>
+      <div class="okmsg" id="ok">✓ Done — check your inbox. Gracias.</div>
+      <p class="fine">Estimate based on your inputs. Recovery assumes Sol captures the calls you currently miss. Sol answers in English &amp; Spanish, 24/7.</p>
+    </div>
+  </div>
+
+  <div class="foot">Sol · The bilingual AI receptionist that never misses a call · Share this with an owner who's bleeding leads.</div>
+</div>
+
+<script>
+  var calls=document.getElementById('calls'), missed=document.getElementById('missed'),
+      value=document.getElementById('value'), conv=document.getElementById('conv');
+  var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
+
+  function setChips(v){
+    document.querySelectorAll('.vchip').forEach(function(c){
+      c.classList.toggle('on', Number(c.dataset.v)===Number(v));
+    });
+  }
+  document.querySelectorAll('.vchip').forEach(function(c){
+    c.addEventListener('click', function(){ value.value=c.dataset.v; calc(); });
+  });
+
+  function calc(){
+    var c=+calls.value, m=+missed.value/100, v=+value.value, cv=+conv.value/100;
+    document.getElementById('callsV').textContent=c;
+    document.getElementById('missedV').textContent=missed.value+'%';
+    document.getElementById('valueV').textContent=fmt(v);
+    document.getElementById('convV').textContent=conv.value+'%';
+    setChips(v);
+
+    var missedPerDay=c*m;
+    var lostCustMonth=missedPerDay*cv*26;   // ~26 open days/month
+    var lostRevMonth=lostCustMonth*v;
+    var lostRevYear=lostRevMonth*12;
+    var recovered=lostRevYear*0.7;          // conservative: Sol recovers ~70% of missed-call value
+
+    document.getElementById('rMissed').textContent=missedPerDay.toFixed(1);
+    document.getElementById('rLostMo').textContent=lostCustMonth.toFixed(1);
+    document.getElementById('rMonth').textContent=fmt(lostRevMonth);
+    document.getElementById('annual').textContent=fmt(lostRevYear);
+    document.getElementById('recover').textContent=fmt(recovered)+' / year';
+  }
+  [calls,missed,value,conv].forEach(function(el){ el.addEventListener('input', calc); });
+  calc();
+
+  document.getElementById('cta').addEventListener('click', function(){
+    document.getElementById('email').focus();
+  });
+  document.getElementById('send').addEventListener('click', function(){
+    var e=document.getElementById('email').value.trim();
+    if(!e) { document.getElementById('email').focus(); return; }
+    document.getElementById('capture').style.display='none';
+    document.getElementById('cta').style.display='none';
+    document.getElementById('ok').style.display='block';
+    /* Wire to your ESP / form endpoint to capture the lead + their result. */
+  });
+</script>
+</body>
+</html>

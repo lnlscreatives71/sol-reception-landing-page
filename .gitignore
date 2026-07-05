@@ -1,0 +1,22 @@
+# Whitelist mode: ignore everything, then allow only what the live site needs.
+# Internal docs (pricing, personas, copy drafts) stay out of this public repo.
+*
+
+!.gitignore
+!index.html
+!sol-missed-call-calculator.html
+!hero-phone.webp
+!sol-favicon.svg
+!g-calculator.svg
+!g-insight.svg
+!g-stat-62.svg
+!g-stat-85.svg
+!g-cost.svg
+!fonts/
+!fonts/*.ttf
+!SolReception-Logo-Pack 2/
+!SolReception-Logo-Pack 2/svg/
+!SolReception-Logo-Pack 2/svg/*.svg
+!FORM_SETUP.md
+!package.json
+!package-lock.json
