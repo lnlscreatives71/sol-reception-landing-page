@@ -7,6 +7,9 @@
 !privacy.html
 !terms.html
 !sol-missed-call-calculator.html
+!blog/
+!blog/*.html
+!blog/*.webp
 !hero-phone.webp
 !sol-favicon.svg
 !g-calculator.svg
