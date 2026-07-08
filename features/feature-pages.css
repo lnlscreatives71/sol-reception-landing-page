@@ -73,6 +73,11 @@ header.site .actions a.link:hover { color: var(--cream); }
 .facts .fact .l { color: var(--fg-muted); font-size: 0.86rem; line-height: 1.4; margin-top: 0.55rem; }
 @media (max-width: 640px) { .facts { grid-template-columns: repeat(2, 1fr); gap: 1.75rem 1.25rem; } }
 
+/* ---------- Hero figure ---------- */
+.hero-figure-wrap { padding: 3rem var(--pad-x) 0; }
+.hero-figure { max-width: 980px; margin: 0 auto; }
+.hero-figure img { width: 100%; display: block; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); aspect-ratio: 4 / 3; object-fit: cover; }
+
 /* ---------- Section wrappers ---------- */
 .section { padding: 5rem 0; }
 .section.alt { background: #1a1614; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }

@@ -14,8 +14,10 @@
 !features/*/
 !features/feature-pages.css
 !features/*/index.html
+!features/*/*.webp
 !solutions/
 !solutions/index.html
+!solutions/*.webp
 !hero-phone.webp
 !sol-favicon.svg
 !g-calculator.svg
