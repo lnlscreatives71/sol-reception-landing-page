@@ -10,6 +10,12 @@
 !blog/
 !blog/*.html
 !blog/*.webp
+!features/
+!features/*/
+!features/feature-pages.css
+!features/*/index.html
+!solutions/
+!solutions/index.html
 !hero-phone.webp
 !sol-favicon.svg
 !g-calculator.svg
