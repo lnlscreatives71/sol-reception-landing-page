@@ -13,6 +13,7 @@
 !features/
 !features/*/
 !features/feature-pages.css
+!features/nav.js
 !features/*/index.html
 !features/*/*.webp
 !solutions/

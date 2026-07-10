@@ -50,6 +50,26 @@ header.site .actions a.link:hover { color: var(--cream); }
 .btn-ghost { background: transparent; border-color: var(--border-strong); color: var(--cream); }
 .btn-ghost:hover { border-color: var(--cream); }
 
+/* ---------- Header "Features" dropdown ---------- */
+.nav-dd { position: relative; display: inline-flex; }
+.nav-dd summary { list-style: none; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--fg-muted); display: inline-flex; align-items: center; gap: 0.4rem; transition: color 200ms; }
+.nav-dd summary::-webkit-details-marker { display: none; }
+.nav-dd summary:hover, .nav-dd[open] summary { color: var(--cream); }
+.nav-dd summary::after { content: ""; width: 6px; height: 6px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform 200ms; }
+.nav-dd[open] summary::after { transform: translateY(1px) rotate(-135deg); }
+.nav-dd .dd-menu { position: absolute; top: calc(100% + 16px); right: 0; min-width: 232px; max-width: 78vw; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; padding: 0.4rem; display: flex; flex-direction: column; box-shadow: 0 24px 60px rgba(0,0,0,0.5); z-index: 200; }
+.nav-dd .dd-menu a { padding: 0.6rem 0.8rem; border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--fg-muted); text-decoration: none; transition: background 150ms, color 150ms; white-space: nowrap; }
+.nav-dd .dd-menu a:hover { background: rgba(251, 246, 238, 0.06); color: var(--cream); }
+.nav-dd .dd-menu a[aria-current="page"] { color: var(--sun); }
+.nav-dd .dd-menu a.dd-sep { margin-top: 0.4rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+.nav-dd .dd-only { display: none; }
+@media (max-width: 720px) {
+  .nav-dd .dd-only { display: block; }
+  /* Pin the menu within the viewport instead of anchoring to the summary,
+     which sits mid-header and pushed the menu off the left edge. */
+  .nav-dd .dd-menu { position: fixed; top: 92px; left: var(--pad-x); right: var(--pad-x); min-width: 0; max-width: none; }
+}
+
 /* ---------- Shared bits ---------- */
 .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sun); display: inline-flex; align-items: center; gap: 0.75rem; }
 .eyebrow::before { content: "\2014"; }
