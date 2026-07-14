@@ -139,6 +139,9 @@ header.site .actions a.link:hover { color: var(--cream); }
 .ribbon .pill { background: rgba(251,246,238,0.06); border: 1px solid var(--border-strong); color: var(--cream); font-size: 0.9rem; font-weight: 600; border-radius: 100px; padding: 0.5rem 1.1rem; }
 .ribbon .more { display: inline-block; margin-top: 1.6rem; color: var(--sun); font-size: 0.95rem; font-weight: 600; text-decoration: none; }
 .ribbon .more:hover { text-decoration: underline; }
+.ribbon .note { color: var(--fg-muted); font-size: 0.95rem; line-height: 1.6; max-width: 560px; margin: 1.5rem auto 0; }
+.sol-card .read { display: inline-block; margin-top: 1.15rem; color: var(--sun); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+.sol-card .read:hover { text-decoration: underline; }
 
 /* ---------- More features cross-links ---------- */
 .more-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 1000px; margin: 0 auto; }
