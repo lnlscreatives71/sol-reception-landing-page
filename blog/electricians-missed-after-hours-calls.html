@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How Electricians Lose Jobs to Missed and After-Hours Calls (And How to Answer Every One) · Sol Reception</title>
+  <meta name="description" content="More than half of calls to electrical contractors come after hours, and most callers never leave a voicemail. Here is what missed calls cost an electrician, and how an AI receptionist answers every one.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.solreception.com/blog/electricians-missed-after-hours-calls.html">
+  <link rel="icon" href="../sol-favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Sol Reception">
+  <meta property="og:title" content="How Electricians Lose Jobs to Missed and After-Hours Calls (And How to Answer Every One)">
+  <meta property="og:description" content="More than half of calls to electrical contractors come after hours, and most callers never leave a voicemail. Here is what missed calls cost an electrician, and how an AI receptionist answers every one.">
+  <meta property="og:url" content="https://www.solreception.com/blog/electricians-missed-after-hours-calls.html">
+  <meta property="og:image" content="https://www.solreception.com/blog/electricians-missed-after-hours-calls-hero.webp">
+  <meta property="article:published_time" content="2026-07-22">
+  <meta property="article:section" content="Electrical">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Electricians Lose Jobs to Missed and After-Hours Calls (And How to Answer Every One)">
+  <meta name="twitter:description" content="More than half of calls to electrical contractors come after hours, and most callers never leave a voicemail. Here is what missed calls cost an electrician, and how an AI receptionist answers every one.">
+  <meta name="twitter:image" content="https://www.solreception.com/blog/electricians-missed-after-hours-calls-hero.webp">
+
+  <style>
+    :root {
+      --ink: #171311;
+      --surface: #1e1a17;
+      --cream: #FBF6EE;
+      --fg-muted: rgba(251, 246, 238, 0.55);
+      --sun: #F2A93B;
+      --clay: #C75B39;
+      --sage: #2E7D5B;
+      --border: rgba(251, 246, 238, 0.12);
+      --border-strong: rgba(251, 246, 238, 0.18);
+      --pad-x: 2rem;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Fraunces', serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @media (min-width: 1024px) { :root { --pad-x: 6rem; } }
+
+    @font-face { font-family: 'Fraunces'; src: url('../fonts/Fraunces-SemiBold.ttf') format('truetype'); font-weight: 600; }
+    @font-face { font-family: 'Fraunces'; src: url('../fonts/Fraunces-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+    @font-face { font-family: 'Inter'; src: url('../fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { margin: 0; padding: 0; background: var(--ink); color: var(--cream); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+
+    a { color: var(--sun); }
+
+    /* ---------- Header ---------- */
+    header.site { height: 88px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--pad-x); border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(23, 19, 17, 0.9); backdrop-filter: blur(20px); z-index: 100; }
+    header.site .brand img { height: 30px; display: block; }
+    header.site .actions { display: flex; align-items: center; gap: 1.75rem; }
+    header.site .actions a.link { font-size: 14px; font-weight: 500; color: var(--fg-muted); text-decoration: none; transition: color 200ms; }
+    header.site .actions a.link:hover { color: var(--cream); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; height: 40px; padding: 0 20px; border-radius: 6px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 200ms var(--ease); border: 1px solid transparent; }
+    .btn-clay { background: var(--clay); color: #fff; }
+    .btn-clay:hover { filter: brightness(1.08); }
+
+    /* ---------- Article ---------- */
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sun); display: flex; align-items: center; gap: 0.75rem; }
+    .eyebrow::before { content: "\2014"; }
+
+    .article-hero { max-width: 820px; margin: 0 auto; padding: 4rem var(--pad-x) 0; }
+    .article-hero .eyebrow { margin-bottom: 1.5rem; }
+    .article-hero h1 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.03em; line-height: 1.06; font-size: clamp(34px, 5.5vw, 60px); margin: 0; }
+    .article-hero h1 em { color: var(--sun); font-style: italic; }
+    .article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; color: var(--fg-muted); font-size: 0.9rem; margin-top: 1.75rem; }
+    .article-meta .dot { opacity: 0.5; }
+
+    .hero-figure { max-width: 1040px; margin: 2.5rem auto 0; padding: 0 var(--pad-x); }
+    .hero-figure img { width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); aspect-ratio: 1200 / 896; object-fit: cover; }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 3rem var(--pad-x) 1rem; }
+    .article-body p { color: rgba(251, 246, 238, 0.82); line-height: 1.75; font-size: 1.08rem; margin: 0 0 1.35rem; }
+    .article-body h2 { font-family: var(--font-display); font-weight: 400; color: var(--sun); font-size: clamp(1.5rem, 3vw, 1.9rem); letter-spacing: -0.02em; line-height: 1.15; margin: 3rem 0 1rem; }
+    .article-body strong { color: var(--cream); font-weight: 600; }
+    .article-body ul { margin: 0 0 1.35rem; padding-left: 1.25rem; }
+    .article-body li { color: rgba(251, 246, 238, 0.82); line-height: 1.7; font-size: 1.08rem; margin-bottom: 0.85rem; }
+    .lead { font-size: 1.22rem !important; color: var(--cream) !important; line-height: 1.6 !important; }
+
+    /* ---------- Stat strip ---------- */
+    .stat-strip { max-width: 900px; margin: 2.5rem auto 0.5rem; padding: 0 var(--pad-x); display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1.4rem; }
+    .stat .num { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.6rem); line-height: 1; color: var(--sun); letter-spacing: -0.02em; }
+    .stat .lbl { margin-top: 0.7rem; color: var(--fg-muted); font-size: 0.9rem; line-height: 1.45; }
+    @media (max-width: 720px) { .stat-strip { grid-template-columns: 1fr; } }
+
+    /* ---------- Pull stat inline ---------- */
+    .callout { border-left: 3px solid var(--clay); background: var(--surface); border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem; margin: 1.75rem 0; }
+    .callout p { margin: 0; font-size: 1.05rem !important; color: var(--cream) !important; }
+
+    /* ---------- CTA ---------- */
+    .cta-panel { max-width: 820px; margin: 3.5rem auto 0; padding: 0 var(--pad-x); }
+    .cta-inner { background: linear-gradient(135deg, var(--clay), var(--sun)); border-radius: 20px; padding: 3rem 2.5rem; text-align: center; color: var(--ink); }
+    .cta-inner h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.1; margin: 0 0 0.9rem; color: var(--ink); }
+    .cta-inner p { margin: 0 auto 1.75rem; max-width: 520px; line-height: 1.6; color: rgba(23, 19, 17, 0.82); font-size: 1.05rem; }
+    .cta-inner .btn-cta { display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 34px; border-radius: 9px; background: var(--ink); color: var(--cream); font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform 200ms var(--ease); }
+    .cta-inner .btn-cta:hover { transform: translateY(-2px); }
+
+    /* ---------- FAQ ---------- */
+    .faq { max-width: 720px; margin: 4rem auto 0; padding: 0 var(--pad-x); }
+    .faq > .eyebrow { margin-bottom: 1.5rem; }
+    .faq h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -0.02em; margin: 0 0 2rem; }
+    details.faq-item { border-top: 1px solid var(--border); padding: 1.35rem 0; }
+    details.faq-item[open] { padding-bottom: 1.6rem; }
+    details.faq-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; font-family: var(--font-display); font-size: 1.2rem; color: var(--cream); letter-spacing: -0.01em; }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary .plus { flex: none; width: 24px; height: 24px; position: relative; transition: transform 250ms var(--ease); color: var(--sun); }
+    details.faq-item summary .plus::before, details.faq-item summary .plus::after { content: ""; position: absolute; background: currentColor; border-radius: 2px; }
+    details.faq-item summary .plus::before { top: 11px; left: 3px; right: 3px; height: 2px; }
+    details.faq-item summary .plus::after { left: 11px; top: 3px; bottom: 3px; width: 2px; transition: opacity 250ms var(--ease); }
+    details.faq-item[open] summary .plus::after { opacity: 0; }
+    details.faq-item p { color: rgba(251, 246, 238, 0.78); line-height: 1.7; font-size: 1rem; margin: 1rem 0 0; }
+
+    /* ---------- Footer ---------- */
+    footer.site { border-top: 1px solid var(--border); margin-top: 5rem; padding: 3rem var(--pad-x); text-align: center; color: var(--fg-muted); font-size: 14px; }
+    footer.site a { color: var(--sun); text-decoration: none; }
+    footer.site a:hover { text-decoration: underline; }
+    footer.site .foot-links { margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <header class="site">
+    <a class="brand" href="../index.html" aria-label="Sol Reception home"><img src="../SolReception-Logo-Pack 2/svg/horizontal_white.svg" alt="Sol Reception"></a>
+    <div class="actions">
+      <a class="link" href="index.html">All articles</a>
+      <a class="btn btn-clay" href="https://lnlcrm.com/book/sol-reception">Book a demo</a>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <div class="article-hero">
+        <span class="eyebrow">Electrical &middot; Guide</span>
+        <h1>How electricians lose jobs to missed and after-hours calls (and how to answer <em>every one</em>)</h1>
+        <div class="article-meta">
+          <span>July 22, 2026</span>
+          <span class="dot">&middot;</span>
+          <span>7 min read</span>
+          <span class="dot">&middot;</span>
+          <span>Sol Reception</span>
+        </div>
+      </div>
+
+      <figure class="hero-figure">
+        <img src="electricians-missed-after-hours-calls-hero.webp" alt="An electrician kneels at an open electrical panel with a voltage tester while a phone lights up with an incoming call in the foreground.">
+      </figure>
+
+      <div class="article-body">
+        <p class="lead">A homeowner smells burning behind an outlet at 8 p.m. A property manager finds half a building with no power on a Sunday. A general contractor needs a panel upgrade quoted before Monday. None of these people wait. They call an electrician, and if no one picks up, they hang up and call the next name on the list. The job goes to whoever answers.</p>
+
+        <p>Here is the direct answer for any electrician asking how to stop the bleed: <strong>you stop losing jobs to missed and after-hours calls by putting an <a href="../features/receptionist/">AI receptionist</a> behind your phone, so every call gets answered on the first ring, gets its details captured, and gets booked or routed to you, day or night.</strong> It backs up your team when you are on a ladder or off the clock. It does not replace anyone. It just makes sure no call goes to voicemail, because voicemail is where electrical jobs go to die.</p>
+
+        <p>Let me walk through why this problem is bigger than most electricians realize, and what a real fix looks like.</p>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat">
+          <div class="num">58%</div>
+          <div class="lbl">of calls to electrical contractors come outside standard business hours</div>
+        </div>
+        <div class="stat">
+          <div class="num">$350+</div>
+          <div class="lbl">the average value of a single missed electrical call, before repeat work and referrals</div>
+        </div>
+        <div class="stat">
+          <div class="num">$85K</div>
+          <div class="lbl">the high end of what contractors lose each year to calls that never got answered</div>
+        </div>
+      </div>
+
+      <div class="article-body">
+        <h2>Why do electricians miss so many calls?</h2>
+        <p>Electricians miss a lot of calls for a simple reason: the person who does the work is the same person who would answer the phone. When you are in a crawlspace, up on a ladder, or driving between jobs, you cannot pick up. Industry estimates put the share of calls electrical contractors miss during work hours somewhere between 40% and 60%. Home service trades as a whole miss anywhere from a quarter to well over half of their calls because the techs are on site.</p>
+        <p>The after-hours gap is even wider. Industry data suggests more than half of the calls electrical contractors receive, often cited around 58%, come outside standard nine-to-five hours. Electrical problems do not keep business hours. Breakers trip at dinnertime. Outlets spark on weekends. Power goes out during storms. If your phone rolls to voicemail every evening and all weekend, you are missing the exact calls that carry the most urgency and the biggest tickets.</p>
+
+        <h2>What does a missed call actually cost an electrician?</h2>
+        <p>A single missed call is not a small thing. Industry figures put the average value of a missed electrical call at roughly $350 or more, and that is before you count the repeat work and referrals a happy customer would have sent your way. Add it up and the numbers get serious fast. Estimates land many electrical contractors in the range of $45,000 to $85,000 in lost revenue a year from calls that never got answered.</p>
+        <div class="callout">
+          <p>Do the math on your own shop. If you miss five callable jobs a week and each is worth even $400 in first-visit revenue, that is more than $100,000 a year walking out the door before you factor in panel upgrades, rewires, and service agreements those customers might have signed.</p>
+        </div>
+        <p>The worst part is you never see it. A missed call leaves no record and no report. The lead just quietly becomes someone else's customer.</p>
+
+        <h2>Why won't callers just leave a voicemail?</h2>
+        <p>Because they do not have to. When someone has a live electrical problem, they are not shopping for the best electrician. They want the first competent one who picks up. Industry data shows roughly 78% of customers hire whoever responds first. Most callers will not leave a voicemail at all. They hang up and dial the next number, and by the time you check your messages that evening, the job is already booked with a competitor.</p>
+        <p>This is why &ldquo;we call everyone back the next morning&rdquo; is not a strategy. In the trades, speed to answer beats reputation and price in that first moment of contact. The electrician who answers wins the job. Full stop.</p>
+
+        <h2>How does an AI receptionist handle after-hours and overflow calls?</h2>
+        <p>An AI receptionist answers your phone the moment your team cannot. It picks up on the first ring, greets the caller in your business name, and handles the conversation like a trained front-desk person would. For an electrical contractor, a good one should:</p>
+        <ul>
+          <li><strong>Answer every call 24/7,</strong> including evenings, weekends, and the middle of a job when your hands are full.</li>
+          <li><strong>Ask the right qualifying questions:</strong> is this an emergency, is there a burning smell or sparking, is the power out, is it residential or commercial, what is the address.</li>
+          <li><strong><a href="../features/scheduling/">Book the appointment straight into your scheduling tool</a>,</strong> whether that is Google Calendar, Housecall Pro, ServiceTitan, Jobber, or Calendly.</li>
+          <li><strong>Capture the caller's name, number, and job details</strong> so you have a clean lead even when a same-day slot is not available.</li>
+          <li><strong>Flag true emergencies and route them to you</strong> or your on-call tech right away, instead of letting a dangerous situation sit in a voicemail box.</li>
+        </ul>
+        <p>The point is not to sound like a robot reading a script. The point is to make sure the customer with a real problem gets a real answer and a booked time, so they never feel the need to call the next electrician.</p>
+
+        <h2>What about Spanish-speaking callers?</h2>
+        <p>This is where a lot of electrical shops leave money on the table without knowing it. More than 43 million people in the US speak Spanish at home. In many service areas, especially in the South and West, a meaningful share of your inbound calls are from Spanish-speaking homeowners and property managers. Industry estimates suggest contractors without Spanish-language support miss 15% to 25% of potential customers in Hispanic-heavy markets, because those callers hang up and dial a company that can help them in their language.</p>
+        <p>Hiring a bilingual front-desk person is expensive and hard to staff around the clock. Sol <a href="../features/receptionist/">answers in both English and Spanish automatically</a>, on the same line, at any hour. A Spanish-speaking caller gets a warm, clear conversation and a booked appointment instead of a language wall. That is a real pool of jobs most of your competitors are still missing.</p>
+
+        <h2>A quick ROI example</h2>
+        <div class="callout">
+          <p>Say your average electrical job is worth $450, and you currently miss six callable jobs a week, a conservative number for a busy shop with techs in the field. That is roughly 26 missed jobs a month, or about $11,700 in first-visit revenue you never billed. Even if an AI receptionist only recovered half of those, you are looking at close to $5,800 a month, or nearly $70,000 a year, for a tool that costs a fraction of one part-time hire.</p>
+        </div>
+        <p>And that ignores the after-hours emergency calls, which tend to be your highest-margin work.</p>
+        <p>You do not need to recover every call for the math to work. You just need to stop sending your best leads to voicemail.</p>
+
+        <h2>Common objections, answered</h2>
+        <p><strong>&ldquo;My customers want to talk to a real person.&rdquo;</strong> They want a fast, competent answer more than they want to know who gave it. Sol answers immediately, handles the routine booking, and hands off to your team the moment a human is needed. Callers get help on the first ring, which is more than voicemail ever gave them.</p>
+        <p><strong>&ldquo;I already have an answering service.&rdquo;</strong> Most traditional answering services take a message and charge you per call to do it. They do not book into your calendar or qualify the job. Sol actually completes the booking and routes real emergencies, so the call turns into work instead of a note you have to chase down later.</p>
+        <p><strong>&ldquo;I do not want to replace my office staff.&rdquo;</strong> You are not. Sol backs up the people you have. It catches overflow when your desk is slammed and covers the nights and weekends no one is staffing. Your team spends less time playing phone tag and more time on the jobs that are already booked.</p>
+
+        <h2>The bottom line</h2>
+        <p>Every unanswered ring is a job going to the electrician who picked up. The calls you miss most, after-hours emergencies and busy-daytime overflow, are the ones worth the most. An AI receptionist like Sol answers all of them in English and Spanish, books the work, and routes the emergencies, so your calendar stays full and your best leads stop leaking to voicemail.</p>
+      </div>
+
+      <div class="cta-panel">
+        <div class="cta-inner">
+          <h2>Ready to stop losing jobs to missed calls?</h2>
+          <p>Book a call to see Sol in action. Sol backs up your team and answers every call, 24/7, in English and Spanish, so you never lose another job to a ring that went unanswered.</p>
+          <a class="btn-cta" href="https://lnlcrm.com/book/sol-reception">Book a call</a>
+        </div>
+      </div>
+
+      <section class="faq" aria-labelledby="faq-heading">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-heading">Common questions</h2>
+
+        <details class="faq-item">
+          <summary>How many calls do electricians actually miss? <span class="plus" aria-hidden="true"></span></summary>
+          <p>Industry estimates suggest electrical contractors miss roughly 40% to 60% of calls during work hours, mostly because the technicians who would answer are on job sites. More than half of all calls, often cited around 58%, also come after standard business hours, when many shops send everything to voicemail.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does a missed call cost an electrician? <span class="plus" aria-hidden="true"></span></summary>
+          <p>The average missed electrical call is worth roughly $350 or more in first-visit revenue, and many contractors lose an estimated $45,000 to $85,000 a year from unanswered calls. Because most callers never leave a voicemail, that lost revenue rarely shows up on any report, which is what makes it so easy to overlook.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why do callers hang up instead of leaving a voicemail? <span class="plus" aria-hidden="true"></span></summary>
+          <p>When someone has an urgent electrical problem, they want the first electrician who picks up, not the best voicemail box. Roughly 78% of customers hire whoever responds first, so most people simply hang up and dial the next number rather than wait for a callback.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can an AI receptionist book electrical jobs and handle emergencies? <span class="plus" aria-hidden="true"></span></summary>
+          <p>Yes. A good AI receptionist answers every call, asks the right qualifying questions, books routine jobs straight into your scheduling software, and flags true emergencies so they get routed to you or your on-call tech right away instead of sitting in voicemail. It backs up your team around the clock rather than replacing anyone.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Does an AI receptionist handle Spanish-speaking callers? <span class="plus" aria-hidden="true"></span></summary>
+          <p>Yes. Sol answers in both English and Spanish on the same phone line, at any hour, without you hiring bilingual staff. Since contractors without Spanish support can miss 15% to 25% of potential customers in Hispanic-heavy markets, answering in both languages captures jobs that would otherwise go to a competitor.</p>
+        </details>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site">
+    <p>&copy; 2026 Sol Reception (LNL AI Agency)</p>
+    <p class="foot-links"><a href="../index.html">Home</a> &middot; <a href="index.html">Blog</a> &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../terms.html">Terms of Service</a></p>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How Electricians Lose Jobs to Missed and After-Hours Calls (And How to Answer Every One)",
+    "description": "More than half of calls to electrical contractors come after hours, and most callers never leave a voicemail. Here is what missed calls cost an electrician, and how an AI receptionist answers every one.",
+    "image": "https://www.solreception.com/blog/electricians-missed-after-hours-calls-hero.webp",
+    "datePublished": "2026-07-22",
+    "dateModified": "2026-07-22",
+    "author": { "@type": "Organization", "name": "Sol Reception", "url": "https://www.solreception.com" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Sol Reception",
+      "logo": { "@type": "ImageObject", "url": "https://www.solreception.com/sol-favicon.svg" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.solreception.com/blog/electricians-missed-after-hours-calls.html" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many calls do electricians actually miss?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Industry estimates suggest electrical contractors miss roughly 40% to 60% of calls during work hours, mostly because the technicians who would answer are on job sites. More than half of all calls, often cited around 58%, also come after standard business hours, when many shops send everything to voicemail." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a missed call cost an electrician?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The average missed electrical call is worth roughly $350 or more in first-visit revenue, and many contractors lose an estimated $45,000 to $85,000 a year from unanswered calls. Because most callers never leave a voicemail, that lost revenue rarely shows up on any report, which is what makes it so easy to overlook." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do callers hang up instead of leaving a voicemail?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When someone has an urgent electrical problem, they want the first electrician who picks up, not the best voicemail box. Roughly 78% of customers hire whoever responds first, so most people simply hang up and dial the next number rather than wait for a callback." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can an AI receptionist book electrical jobs and handle emergencies?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. A good AI receptionist answers every call, asks the right qualifying questions, books routine jobs straight into your scheduling software, and flags true emergencies so they get routed to you or your on-call tech right away instead of sitting in voicemail. It backs up your team around the clock rather than replacing anyone." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does an AI receptionist handle Spanish-speaking callers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Sol answers in both English and Spanish on the same phone line, at any hour, without you hiring bilingual staff. Since contractors without Spanish support can miss 15% to 25% of potential customers in Hispanic-heavy markets, answering in both languages captures jobs that would otherwise go to a competitor." }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>
