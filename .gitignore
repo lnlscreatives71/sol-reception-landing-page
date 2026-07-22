@@ -36,3 +36,4 @@
 !package-lock.json
 !api/
 !api/sign-lead.ts
+.vercel
