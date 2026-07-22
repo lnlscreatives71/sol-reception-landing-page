@@ -621,10 +621,13 @@
       c.oninput = v.oninput = update;
     })();
 
-    /* 5. FORM — captures sign-ups into a Google Form (responses auto-collect
-       into its linked Google Sheet). Fill in the three constants below with
-       values from your form — see FORM_SETUP.md for how to find them. */
+    /* 5. FORM - primary capture goes to the LNL CRM through the same-origin
+       signing proxy (/api/sign-lead), which alerts the operator and creates
+       the contact. The original Google Form submit is kept as a best-effort
+       backup so a CRM outage never loses a lead (responses still land in the
+       linked Sheet). See FORM_SETUP.md for the Google constants. */
     (function initForm() {
+      const CRM_PROXY = '/api/sign-lead';
       // https://docs.google.com/forms/d/e/<FORM_ID>/formResponse
       const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScUS3lNKrk_jT2cVfWhmk21B3GtvUpqul7YlnI0QuSUaaCh6Q/formResponse';
       const ENTRY_NAME  = 'entry.153343481';
@@ -635,34 +638,60 @@
       const err = document.getElementById('form-error');
       if (!f) return;
 
-      const configured = FORM_ACTION && ENTRY_NAME && ENTRY_EMAIL;
+      function googleBackup(name, email) {
+        // Google Forms can't send CORS headers, so we use no-cors with a
+        // "simple" URL-encoded request (no preflight). The response is opaque,
+        // so a resolved fetch is treated as success.
+        const payload = new URLSearchParams();
+        payload.append(ENTRY_NAME, name);
+        payload.append(ENTRY_EMAIL, email);
+        // The form has "Collect email addresses" enabled, which requires this
+        // extra field - submissions 400 without it.
+        payload.append('emailAddress', email);
+        payload.append('fvv', '1');
+        payload.append('pageHistory', '0');
+        return fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: payload });
+      }
 
       f.onsubmit = async (e) => {
         e.preventDefault();
         if (err) err.style.display = 'none';
 
-        // Not wired up yet → keep the original optimistic behaviour.
-        if (!configured) { f.style.display = 'none'; s.style.display = 'block'; return; }
-
-        const payload = new URLSearchParams();
-        payload.append(ENTRY_NAME, f.elements.name.value.trim());
-        payload.append(ENTRY_EMAIL, f.elements.email.value.trim());
-        // The form has "Collect email addresses" enabled, which requires this
-        // extra field — submissions 400 without it.
-        payload.append('emailAddress', f.elements.email.value.trim());
-        payload.append('fvv', '1');
-        payload.append('pageHistory', '0');
+        const name = f.elements.name.value.trim();
+        const email = f.elements.email.value.trim();
+        const nameParts = name.split(/\s+/).filter(Boolean);
 
         const btn = f.querySelector('button[type=submit]');
         const label = btn.textContent;
         btn.disabled = true; btn.textContent = 'Submitting…';
+
+        const backup = googleBackup(name, email).then(() => true, () => false);
+
+        let crmOk = false;
         try {
-          // Google Forms can't send CORS headers, so we use no-cors with a
-          // "simple" URL-encoded request (no preflight). The response is opaque,
-          // so a resolved fetch is treated as success.
-          await fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: payload });
-          f.style.display = 'none'; s.style.display = 'block';
+          const res = await fetch(CRM_PROXY, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: email,
+              firstName: nameParts[0] || null,
+              lastName: nameParts.slice(1).join(' ') || null,
+              leadSource: 'Sol Reception waitlist',
+              tags: ['sol-reception', 'waitlist'],
+              source: 'sol-reception-waitlist',
+            }),
+          });
+          crmOk = res.ok;
         } catch (ex) {
+          crmOk = false;
+        }
+
+        // Success if the CRM took it, or failing that, if the Google backup
+        // resolved (the lead is in the Sheet even though the CRM missed it).
+        const backupOk = await backup;
+        if (crmOk || backupOk) {
+          f.style.display = 'none'; s.style.display = 'block';
+        } else {
           if (err) err.style.display = 'block';
           btn.disabled = false; btn.textContent = label;
         }

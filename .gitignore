@@ -34,3 +34,5 @@
 !FORM_SETUP.md
 !package.json
 !package-lock.json
+!api/
+!api/sign-lead.ts
