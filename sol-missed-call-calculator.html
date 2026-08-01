@@ -3,11 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Missed-Call Revenue Calculator — Sol</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Missed-Call Revenue Calculator · Sol Reception</title>
+<meta name="description" content="Work out what missed and after-hours calls cost your business per year. Move four sliders and see the number, plus what you could recover by answering every call.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.solreception.com/sol-missed-call-calculator.html">
+<link rel="icon" href="sol-favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sol Reception">
+<meta property="og:title" content="Missed-Call Revenue Calculator">
+<meta property="og:description" content="Work out what missed and after-hours calls cost your business per year, and what you could recover by answering every one.">
+<meta property="og:url" content="https://www.solreception.com/sol-missed-call-calculator.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Missed-Call Revenue Calculator">
+<meta name="twitter:description" content="Work out what missed and after-hours calls cost your business per year, and what you could recover by answering every one.">
+
 <style>
+  @font-face { font-family: 'Fraunces'; src: url('fonts/Fraunces-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+  @font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
   :root{
     --ink:#171311; --sun:#F2A93B; --clay:#C75B39; --cream:#FBF6EE;
     --sage:#2E7D5B; --muted:#6E645C; --line:#E7DDCE; --card:#FFFFFF;
@@ -58,6 +72,8 @@
   .capture input::placeholder{color:#8a7d72}
   .fine{font-size:12px; color:#8a7d72; margin-top:14px; text-align:center}
   .okmsg{display:none; color:#9fe3c2; font-size:14px; font-weight:500; margin-top:12px; text-align:center}
+  .errmsg{display:none; color:#f0a58e; font-size:14px; font-weight:500; margin-top:12px; text-align:center}
+  .cta:disabled{opacity:.6; cursor:default}
   .foot{padding:18px 36px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); text-align:center}
   @media(max-width:760px){ .body{grid-template-columns:1fr} .big{font-size:46px} }
 </style>
@@ -66,7 +82,7 @@
 <div class="card">
   <div class="head">
     <a class="logo" href="index.html" aria-label="Back to Sol Reception home"><span class="sun"></span> sol</a>
-    <div class="tag">Free tool · Missed-Call Revenue Calculator</div>
+    <div class="tag">Complimentary tool · Missed-Call Revenue Calculator</div>
   </div>
 
   <div class="body">
@@ -102,7 +118,7 @@
 
       <div class="field" style="margin-bottom:0">
         <div class="valrow"><label for="conv">Of the calls you miss, % you'd have won as a customer</label><span class="val" id="convV">18%</span></div>
-        <p class="hint">Not every call is a new customer — set this to the share of missed calls that were real opportunities you'd have closed.</p>
+        <p class="hint">Not every call is a new customer, so set this to the share of missed calls that were real opportunities you'd have closed.</p>
         <input type="range" id="conv" min="5" max="50" step="1" value="18">
       </div>
     </div>
@@ -121,12 +137,13 @@
         <div class="v" id="recover">$0 / year</div>
       </div>
 
-      <button class="cta" id="cta">Stop the leak — get early access</button>
+      <button class="cta" id="cta">Stop the leak, get early access</button>
       <div class="capture" id="capture">
         <input type="email" id="email" placeholder="Email me my results + early access">
         <button class="cta" style="width:auto; margin:0; padding:13px 18px" id="send">Send</button>
       </div>
-      <div class="okmsg" id="ok">✓ Done — check your inbox. Gracias.</div>
+      <div class="okmsg" id="ok">✓ Got it. We'll be in touch with your results. Gracias.</div>
+      <div class="errmsg" id="err"></div>
       <p class="fine">Estimate based on your inputs. Recovery assumes Sol captures the calls you currently miss. Sol answers in English &amp; Spanish, 24/7.</p>
     </div>
   </div>
@@ -174,13 +191,51 @@
   document.getElementById('cta').addEventListener('click', function(){
     document.getElementById('email').focus();
   });
-  document.getElementById('send').addEventListener('click', function(){
-    var e=document.getElementById('email').value.trim();
-    if(!e) { document.getElementById('email').focus(); return; }
-    document.getElementById('capture').style.display='none';
-    document.getElementById('cta').style.display='none';
-    document.getElementById('ok').style.display='block';
-    /* Wire to your ESP / form endpoint to capture the lead + their result. */
+  // Sends the lead and their computed result to the LNL CRM through the
+  // signing proxy (same endpoint the landing page waitlist form uses).
+  // Only reports success if the CRM actually took it.
+  var sendBtn=document.getElementById('send'), emailEl=document.getElementById('email'),
+      errEl=document.getElementById('err');
+
+  sendBtn.addEventListener('click', async function(){
+    var e=emailEl.value.trim();
+    errEl.style.display='none';
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { emailEl.focus(); errEl.textContent='Enter a valid email address.'; errEl.style.display='block'; return; }
+
+    var label=sendBtn.textContent;
+    sendBtn.disabled=true; sendBtn.textContent='Sending…';
+
+    var c=+calls.value, m=+missed.value/100, v=+value.value, cv=+conv.value/100;
+    var lostRevYear=(c*m)*cv*26*v*12;
+
+    try {
+      var res = await fetch('/api/sign-lead', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          email: e,
+          leadSource: 'Sol Reception missed-call calculator',
+          tags: ['sol-reception','calculator'],
+          source: 'sol-reception-calculator',
+          customFields: {
+            callsPerDay: c,
+            percentMissed: +missed.value,
+            avgCustomerValue: v,
+            percentWinnable: +conv.value,
+            estimatedAnnualLoss: Math.round(lostRevYear),
+            estimatedAnnualRecovery: Math.round(lostRevYear*0.7)
+          }
+        })
+      });
+      if(!res.ok) throw new Error('rejected');
+      document.getElementById('capture').style.display='none';
+      document.getElementById('cta').style.display='none';
+      document.getElementById('ok').style.display='block';
+    } catch (ex) {
+      errEl.textContent='Something went wrong. Try again, or email lainiem@lnlaiagency.com.';
+      errEl.style.display='block';
+      sendBtn.disabled=false; sendBtn.textContent=label;
+    }
   });
 </script>
   <script src="sol-widget.js"></script>
