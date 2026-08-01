@@ -55,6 +55,8 @@
     .btn-primary { background: var(--sun); color: var(--ink); }
     .btn-ghost { background: transparent; border-color: var(--border-strong); color: var(--cream); }
     .btn-sm { height: 38px; padding: 0 18px; font-size: 14px; border-radius: 6px; }
+    .nav-actions, .hero-header-actions { display: flex; align-items: center; gap: 12px; }
+    @media (max-width: 860px) { .nav-actions .btn-ghost, .hero-header-actions .btn-ghost { display: none; } }
 
     /* ---------- Nav ---------- */
     .site-nav { position: fixed; top: 0; left: 0; right: 0; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--pad-x); background: rgba(23, 19, 17, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; opacity: 0; transform: translateY(-100%); transition: all 500ms var(--ease); }
@@ -142,6 +144,8 @@
     /* ---------- Lead Form ---------- */
     .footer-section { background: #1a1614; padding: 10rem var(--pad-x); border-top: 1px solid var(--border); }
     .form-box { background: var(--ink); border: 1px solid var(--border); padding: 5rem; border-radius: 32px; max-width: 900px; margin: 4rem auto 0; }
+    .alt-cta { max-width: 900px; margin: 2.5rem auto 0; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .alt-cta p { margin: 0; color: var(--fg-muted); font-size: 1.05rem; }
     .form-input { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; height: 60px; padding: 0 20px; color: #fff; font-size: 17px; width: 100%; transition: border-color 0.3s; margin-bottom: 1.5rem; }
     .form-input:focus { border-color: var(--sun); outline: none; }
 
@@ -182,7 +186,10 @@
       <a href="#roi">ROI</a>
       <a href="blog/">Blog</a>
     </div>
-    <div class="nav-actions"><a href="#waitlist" class="btn btn-sm btn-clay" style="background: var(--clay); color: #fff;">Book a demo</a></div>
+    <div class="nav-actions">
+      <a href="#waitlist" class="btn btn-sm btn-ghost">Join the waitlist</a>
+      <a href="https://lnlcrm.com/book/sol-reception" class="btn btn-sm btn-clay" style="background: var(--clay); color: #fff;">Book a demo call</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -197,7 +204,10 @@
           <a href="#roi">ROI</a>
           <a href="blog/">Blog</a>
         </div>
-        <div class="hero-header-actions"><a href="#waitlist" class="btn btn-sm btn-clay" style="background: var(--clay); color: #fff;">Book a demo</a></div>
+        <div class="hero-header-actions">
+          <a href="#waitlist" class="btn btn-sm btn-ghost">Join the waitlist</a>
+          <a href="https://lnlcrm.com/book/sol-reception" class="btn btn-sm btn-clay" style="background: var(--clay); color: #fff;">Book a demo call</a>
+        </div>
       </header>
       <div class="section-inner hero-grid">
         <div class="hero-copy">
@@ -368,6 +378,10 @@
           <p style="font-size: 20px; opacity: 0.6; margin-top: 1rem;">We'll reach out shortly to schedule your demo.</p>
         </div>
       </div>
+      <div class="alt-cta">
+        <p>Would rather not wait?</p>
+        <a href="https://lnlcrm.com/book/sol-reception" class="btn btn-ghost">Book a demo call</a>
+      </div>
     </div>
   </section>
 
@@ -386,7 +400,8 @@
             <a href="solutions/">Solutions</a>
             <a href="#demo">Live Demo</a>
             <a href="#roi">ROI Calculator</a>
-            <a href="#waitlist">Book a demo</a>
+            <a href="#waitlist">Join the waitlist</a>
+            <a href="https://lnlcrm.com/book/sol-reception">Book a demo call</a>
           </div>
           <div class="footer-col">
             <span class="footer-heading">Company</span>
