@@ -650,28 +650,24 @@
       const hint = document.getElementById('talk-to-sol-hint');
       if (!btn) return;
 
-      // The widget is a custom element injected by sol-widget.js and upgraded
-      // by the ElevenLabs embed. It exposes no documented open() method, so
-      // this tries the available handles and always falls back to pointing at
-      // the corner rather than doing nothing visible.
-      function openWidget() {
+      // Deliberately does NOT synthesise clicks into the widget. It is a
+      // third-party custom element with no documented open() method, and
+      // blind-clicking the first button found in its shadow root is a guess
+      // that breaks silently whenever the embed changes its internals or is
+      // showing the terms modal. Point at the widget and let the visitor
+      // press it themselves.
+      function highlightWidget() {
         const w = document.querySelector('elevenlabs-convai');
-        if (!w) return false;
-
+        if (!w) return;
+        w.classList.remove('sol-attn');
+        void w.offsetWidth; // restart the animation on repeat presses
         w.classList.add('sol-attn');
         setTimeout(() => w.classList.remove('sol-attn'), 3600);
-
-        const root = w.shadowRoot;
-        if (root) {
-          const trigger = root.querySelector('button, [role="button"]');
-          if (trigger) { trigger.click(); return true; }
-        }
-        w.click();
-        return false; // could not confirm it opened
       }
 
       btn.addEventListener('click', () => {
-        if (!openWidget() && hint) hint.classList.add('is-visible');
+        highlightWidget();
+        if (hint) hint.classList.add('is-visible');
       });
     })();
 
