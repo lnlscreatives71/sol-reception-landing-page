@@ -62,11 +62,38 @@ function localTokenApi(): PluginOption {
   };
 }
 
+function getHtmlEntries(dir: string, baseDir = dir): Record<string, string> {
+  const entries: Record<string, string> = {};
+  try {
+    const items = fs.readdirSync(dir, { withFileTypes: true });
+    for (const item of items) {
+      if (item.name === 'node_modules' || item.name === 'dist' || item.name === '.git' || item.name === '.vercel') continue;
+      const fullPath = path.join(dir, item.name);
+      if (item.isDirectory()) {
+        Object.assign(entries, getHtmlEntries(fullPath, baseDir));
+      } else if (item.isFile() && item.name.endsWith('.html')) {
+        const relPath = path.relative(baseDir, fullPath).replace(/\\/g, '/');
+        const name = relPath === 'index.html' ? 'main' : relPath.replace(/\.html$/, '').replace(/\//g, '_');
+        entries[name] = fullPath;
+      }
+    }
+  } catch (e) {
+    console.warn('Error reading HTML entries:', e);
+  }
+  return entries;
+}
+
 export default defineConfig({
   plugins: [react(), localTokenApi()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: getHtmlEntries(__dirname),
     },
   },
 });

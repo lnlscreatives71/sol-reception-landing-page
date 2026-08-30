@@ -38,6 +38,7 @@
 !vite.config.ts
 !tsconfig.json
 !tsconfig.node.json
+!vercel.json
 !api/
 !api/*
 !api/**/*.ts
