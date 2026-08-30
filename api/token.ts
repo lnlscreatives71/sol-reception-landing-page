@@ -1,14 +1,14 @@
-// Vercel Node.js function: mints a LiveKit access token for Sol reception agent calls.
+// Vercel Edge function: mints a LiveKit access token for Sol reception agent calls.
 // Accepts POST requests from TokenSource.endpoint('/api/token').
 
-export const config = { runtime: "nodejs" };
+export const config = { runtime: "edge" };
 
 import { AccessToken, RoomConfiguration } from "livekit-server-sdk";
 
 const ORIGIN_ALLOWLIST = [
   /^https:\/\/solreception\.com$/,
   /^https:\/\/www\.solreception\.com$/,
-  /^https:\/\/[a-z0-9-]+-sol-reception\.vercel\.app$/,
+  /^https:\/\/[a-z0-9-]*sol-reception[a-z0-9-]*\.vercel\.app$/,
   /^http:\/\/localhost(:\d+)?$/,
 ];
 
@@ -33,15 +33,20 @@ interface TokenRequestBody {
   room_config?: Record<string, unknown>;
 }
 
-export async function OPTIONS(req: Request): Promise<Response> {
-  return new Response(null, {
-    status: 204,
-    headers: corsHeaders(req.headers.get("origin")),
-  });
-}
+export default async function handler(req: Request): Promise<Response> {
+  const origin = req.headers.get("origin");
+  const cors = corsHeaders(origin);
 
-export async function POST(req: Request): Promise<Response> {
-  const cors = corsHeaders(req.headers.get("origin"));
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: cors });
+  }
+
+  if (req.method !== "POST") {
+    return new Response(JSON.stringify({ error: "Method not allowed" }), {
+      status: 405,
+      headers: { "Content-Type": "application/json", ...cors },
+    });
+  }
 
   const apiKey = process.env.LIVEKIT_API_KEY;
   const apiSecret = process.env.LIVEKIT_API_SECRET;
@@ -63,8 +68,6 @@ export async function POST(req: Request): Promise<Response> {
   const stamp = Date.now();
   const roomName = body.room_name || `sol-reception-${stamp}`;
   const identity = body.participant_identity || `web-${stamp}`;
-
-
 
   const at = new AccessToken(apiKey, apiSecret, {
     identity,
@@ -97,24 +100,4 @@ export async function POST(req: Request): Promise<Response> {
     JSON.stringify({ server_url: serverUrl, participant_token: participantToken }),
     { status: 201, headers: { "Content-Type": "application/json", ...cors } },
   );
-}
-
-export default async function handler(req: any, res: any) {
-  if (req.method === 'OPTIONS') {
-    const response = await OPTIONS(new Request('http://localhost', { headers: req.headers }));
-    res.status(response.status).end();
-    return;
-  }
-  if (req.method === 'POST') {
-    const webReq = new Request('http://localhost', {
-      method: 'POST',
-      headers: req.headers,
-      body: JSON.stringify(req.body),
-    });
-    const response = await POST(webReq);
-    const data = await response.json();
-    res.status(response.status).json(data);
-    return;
-  }
-  res.status(405).json({ error: 'Method not allowed' });
 }
