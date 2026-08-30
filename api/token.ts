@@ -1,8 +1,7 @@
-// Vercel Edge function: mints a LiveKit access token for Sol reception agent calls.
+// Vercel Node.js Serverless Function: mints a LiveKit access token for Sol reception agent calls.
 // Accepts POST requests from TokenSource.endpoint('/api/token').
 
-export const config = { runtime: "edge" };
-
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { AccessToken, RoomConfiguration } from "livekit-server-sdk";
 
 const ORIGIN_ALLOWLIST = [
@@ -12,16 +11,14 @@ const ORIGIN_ALLOWLIST = [
   /^http:\/\/localhost(:\d+)?$/,
 ];
 
-function corsHeaders(origin: string | null): Record<string, string> {
-  const allowed =
-    origin && ORIGIN_ALLOWLIST.some((re) => re.test(origin)) ? origin : "";
-  return {
-    "Access-Control-Allow-Origin": allowed,
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Max-Age": "600",
-    Vary: "Origin",
-  };
+function setCorsHeaders(req: VercelRequest, res: VercelResponse) {
+  const origin = req.headers.origin as string | undefined;
+  const allowed = origin && ORIGIN_ALLOWLIST.some((re) => re.test(origin)) ? origin : "";
+  res.setHeader("Access-Control-Allow-Origin", allowed);
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Max-Age", "600");
+  res.setHeader("Vary", "Origin");
 }
 
 interface TokenRequestBody {
@@ -33,38 +30,25 @@ interface TokenRequestBody {
   room_config?: Record<string, unknown>;
 }
 
-export default async function handler(req: Request): Promise<Response> {
-  const origin = req.headers.get("origin");
-  const cors = corsHeaders(origin);
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  setCorsHeaders(req, res);
 
   if (req.method === "OPTIONS") {
-    return new Response(null, { status: 204, headers: cors });
+    return res.status(204).end();
   }
 
   if (req.method !== "POST") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
-      headers: { "Content-Type": "application/json", ...cors },
-    });
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   const apiKey = process.env.LIVEKIT_API_KEY;
   const apiSecret = process.env.LIVEKIT_API_SECRET;
   const serverUrl = process.env.LIVEKIT_URL;
   if (!apiKey || !apiSecret || !serverUrl) {
-    return new Response(JSON.stringify({ error: "LiveKit is not configured" }), {
-      status: 503,
-      headers: { "Content-Type": "application/json", ...cors },
-    });
+    return res.status(503).json({ error: "LiveKit is not configured" });
   }
 
-  let body: TokenRequestBody = {};
-  try {
-    body = (await req.json()) as TokenRequestBody;
-  } catch {
-    // default empty body
-  }
-
+  const body: TokenRequestBody = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
   const stamp = Date.now();
   const roomName = body.room_name || `sol-reception-${stamp}`;
   const identity = body.participant_identity || `web-${stamp}`;
@@ -96,8 +80,8 @@ export default async function handler(req: Request): Promise<Response> {
 
   const participantToken = await at.toJwt();
 
-  return new Response(
-    JSON.stringify({ server_url: serverUrl, participant_token: participantToken }),
-    { status: 201, headers: { "Content-Type": "application/json", ...cors } },
-  );
+  return res.status(201).json({
+    server_url: serverUrl,
+    participant_token: participantToken,
+  });
 }

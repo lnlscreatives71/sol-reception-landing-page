@@ -43,15 +43,22 @@ function localTokenApi(): PluginOption {
           const chunks: Buffer[] = [];
           for await (const c of req) chunks.push(c as Buffer);
           const mod = await server.ssrLoadModule('/api/token.ts');
-          const webReq = new Request('http://localhost/api/token', {
+          const rawBody = Buffer.concat(chunks).toString() || '{}';
+          let parsedBody = {};
+          try { parsedBody = JSON.parse(rawBody); } catch { /* ignore */ }
+          const mockReq: any = {
             method: 'POST',
-            headers: { 'content-type': 'application/json', origin: 'http://localhost:5173' },
-            body: Buffer.concat(chunks).toString() || '{}',
-          });
-          const webRes: Response = await mod.POST(webReq);
-          res.statusCode = webRes.status;
-          webRes.headers.forEach((v, k) => res.setHeader(k, v));
-          res.end(await webRes.text());
+            headers: req.headers,
+            body: parsedBody,
+          };
+          const mockRes: any = {
+            statusCode: 200,
+            setHeader(k: string, v: string) { res.setHeader(k, v); },
+            status(code: number) { this.statusCode = code; res.statusCode = code; return this; },
+            json(data: any) { res.setHeader('content-type', 'application/json'); res.end(JSON.stringify(data)); },
+            end(data?: any) { res.end(data); }
+          };
+          await mod.default(mockReq, mockRes);
         } catch (e) {
           console.error('[localTokenApi] Error:', e);
           res.statusCode = 500;
