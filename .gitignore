@@ -35,6 +35,15 @@
 !FORM_SETUP.md
 !package.json
 !package-lock.json
+!vite.config.ts
+!tsconfig.json
+!tsconfig.node.json
 !api/
-!api/sign-lead.ts
+!api/*
+!api/**/*.ts
+!src/
+!src/*
+!src/**/*.ts
+!src/**/*.tsx
+!src/**/*.css
 .vercel
