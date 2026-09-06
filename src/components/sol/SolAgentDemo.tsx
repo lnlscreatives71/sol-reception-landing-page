@@ -1,20 +1,48 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { RoomAudioRenderer, LiveKitRoom, useVoiceAssistant } from '@livekit/components-react';
+import { RoomAudioRenderer, LiveKitRoom, useVoiceAssistant, useAgentExpression } from '@livekit/components-react';
 import { AgentAudioVisualizerRadial } from '@/components/agents-ui/agent-audio-visualizer-radial';
+
+export const MOOD_COLORS: Record<string, string> = {
+  empathetic: '#36CFC9', // Soft cyan/teal for clinical care and reassuring empathy
+  calm: '#F2A93B',       // Sol's signature warm amber
+  happy: '#FFC53D',      // Joyful gold for confirmed booking
+  hopeful: '#52C41A',    // Reassuring green
+  curious: '#9254DE',    // Inquisitive purple for intake questions
+  surprised: '#B37FEB',  // Soft lavender
+  anxious: '#D46B08',    // Amber-orange
+  sad: '#2F54EB',        // Gentle deep blue
+  excited: '#FF7A45',    // Energetic coral
+};
 
 export function Demo() {
   const { audioTrack, state } = useVoiceAssistant();
+  const { mood } = useAgentExpression();
+  const visualizerColor = (mood && MOOD_COLORS[mood]) ? MOOD_COLORS[mood] : '#F2A93B';
 
   return (
-    <AgentAudioVisualizerRadial
-      size="lg"
-      color="#F2A93B"
-      radius={undefined}
-      state={state}
-      audioTrack={audioTrack}
-    />
+    <div className="flex flex-col items-center gap-2">
+      <AgentAudioVisualizerRadial
+        size="lg"
+        color={visualizerColor}
+        radius={undefined}
+        state={state}
+        audioTrack={audioTrack}
+      />
+      {mood && (
+        <span
+          className="text-xs font-semibold px-2.5 py-0.5 rounded-full capitalize transition-colors duration-300"
+          style={{
+            color: visualizerColor,
+            backgroundColor: `${visualizerColor}15`,
+            border: `1px solid ${visualizerColor}40`,
+          }}
+        >
+          {mood}
+        </span>
+      )}
+    </div>
   );
 }
 
