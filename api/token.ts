@@ -68,13 +68,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   });
 
   if (body.room_config) {
-    at.roomConfig = RoomConfiguration.fromJson(
-      body.room_config as Parameters<typeof RoomConfiguration.fromJson>[0],
-    );
+    at.roomConfig = RoomConfiguration.fromJson({
+      emptyTimeout: 60,
+      departureTimeout: 30,
+      ...(body.room_config as any),
+    });
   } else {
     // Default dispatch to sol-reception agent if room_config wasn't passed explicitly
     at.roomConfig = RoomConfiguration.fromJson({
       agents: [{ agent_name: "sol-reception" }],
+      emptyTimeout: 60,
+      departureTimeout: 30,
     });
   }
 
