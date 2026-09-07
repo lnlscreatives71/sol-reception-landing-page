@@ -25,14 +25,16 @@ function localTokenApi(): PluginOption {
       }
 
       server.middlewares.use(async (req, res, next) => {
-        if (!req.url || (!req.url.startsWith('/api/token') && !req.url.startsWith('/api/livekit-token'))) {
+        const isToken = req.url.startsWith('/api/token') || req.url.startsWith('/api/livekit-token');
+        const isWebhook = req.url.startsWith('/api/livekit-webhook');
+        if (!isToken && !isWebhook) {
           return next();
         }
         if (req.method === 'OPTIONS') {
           res.statusCode = 204;
           res.setHeader('Access-Control-Allow-Origin', '*');
           res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-          res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+          res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
           return res.end();
         }
         if (req.method !== 'POST') {
@@ -42,14 +44,16 @@ function localTokenApi(): PluginOption {
         try {
           const chunks: Buffer[] = [];
           for await (const c of req) chunks.push(c as Buffer);
-          const mod = await server.ssrLoadModule('/api/token.ts');
-          const rawBody = Buffer.concat(chunks).toString() || '{}';
+          const rawBuffer = Buffer.concat(chunks);
+          const rawBody = rawBuffer.toString('utf-8') || '{}';
+          const modulePath = isWebhook ? '/api/livekit-webhook.ts' : '/api/token.ts';
+          const mod = await server.ssrLoadModule(modulePath);
           let parsedBody = {};
           try { parsedBody = JSON.parse(rawBody); } catch { /* ignore */ }
           const mockReq: any = {
             method: 'POST',
             headers: req.headers,
-            body: parsedBody,
+            body: isWebhook ? rawBody : parsedBody,
           };
           const mockRes: any = {
             statusCode: 200,
