@@ -16,7 +16,16 @@ function localTokenApi(): PluginOption {
           for (const line of txt.split('\n')) {
             const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
             if (m && process.env[m[1]] === undefined) {
-              process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
+              let val = m[2].replace(/^["']|["']$/g, '');
+              if (val.startsWith('op://')) {
+                try {
+                  const { execSync } = require('child_process');
+                  val = execSync(`op read "${val}"`, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
+                } catch (opErr) {
+                  console.warn(`Could not resolve 1Password reference for ${m[1]}`);
+                }
+              }
+              process.env[m[1]] = val;
             }
           }
         }
