@@ -41,11 +41,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const apiKey = process.env.LIVEKIT_API_KEY;
-  const apiSecret = process.env.LIVEKIT_API_SECRET;
-  const serverUrl = process.env.LIVEKIT_URL;
+  const apiKey = process.env.LIVEKIT_API_KEY || process.env.SOL_RECEPTION_LIVEKIT_API_KEY;
+  const apiSecret = process.env.LIVEKIT_API_SECRET || process.env.SOL_RECEPTION_LIVEKIT_API_SECRET;
+  const serverUrl =
+    process.env.LIVEKIT_URL ||
+    process.env.SOL_RECEPTION_LIVEKIT_URL ||
+    "wss://sol-reception-jf7xerwe.livekit.cloud";
+
   if (!apiKey || !apiSecret || !serverUrl) {
-    return res.status(503).json({ error: "LiveKit is not configured" });
+    const missing: string[] = [];
+    if (!apiKey) missing.push("LIVEKIT_API_KEY");
+    if (!apiSecret) missing.push("LIVEKIT_API_SECRET");
+    if (!serverUrl) missing.push("LIVEKIT_URL");
+    return res.status(503).json({ error: "LiveKit is not configured", missing });
   }
 
   const body: TokenRequestBody = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});

@@ -33,13 +33,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const apiKey = process.env.LIVEKIT_API_KEY;
-  const apiSecret = process.env.LIVEKIT_API_SECRET;
-  const serverUrl = process.env.LIVEKIT_URL;
+  const apiKey = process.env.LIVEKIT_API_KEY || process.env.SOL_RECEPTION_LIVEKIT_API_KEY;
+  const apiSecret = process.env.LIVEKIT_API_SECRET || process.env.SOL_RECEPTION_LIVEKIT_API_SECRET;
+  const serverUrl =
+    process.env.LIVEKIT_URL ||
+    process.env.SOL_RECEPTION_LIVEKIT_URL ||
+    "wss://sol-reception-jf7xerwe.livekit.cloud";
 
   if (!apiKey || !apiSecret || !serverUrl) {
-    console.error("[livekit-webhook] Missing LIVEKIT credentials in environment.");
-    return res.status(500).json({ error: "LiveKit server credentials missing" });
+    const missing: string[] = [];
+    if (!apiKey) missing.push("LIVEKIT_API_KEY");
+    if (!apiSecret) missing.push("LIVEKIT_API_SECRET");
+    if (!serverUrl) missing.push("LIVEKIT_URL");
+    console.error("[livekit-webhook] Missing LIVEKIT credentials:", missing);
+    return res.status(500).json({ error: "LiveKit server credentials missing", missing });
   }
 
   const authHeader = req.headers.authorization;
