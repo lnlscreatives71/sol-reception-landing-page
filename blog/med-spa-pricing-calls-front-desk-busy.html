@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How Should a Med Spa Handle Pricing Calls When the Front Desk Is Busy? · Sol Reception</title>
+  <meta name="description" content="Most med spa callers lead with a price question, and 68% book with the first provider who answers well. Here is how to handle those calls when your team is in treatment rooms.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.solreception.com/blog/med-spa-pricing-calls-front-desk-busy.html">
+  <link rel="icon" href="../sol-favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Sol Reception">
+  <meta property="og:title" content="How Should a Med Spa Handle Pricing Calls When the Front Desk Is Busy?">
+  <meta property="og:description" content="Most med spa callers lead with a price question, and 68% book with the first provider who answers well. Here is how to handle those calls when your team is in treatment rooms.">
+  <meta property="og:url" content="https://www.solreception.com/blog/med-spa-pricing-calls-front-desk-busy.html">
+  <meta property="og:image" content="https://www.solreception.com/blog/med-spa-pricing-calls-front-desk-busy-hero.webp">
+  <meta property="article:published_time" content="2026-09-14">
+  <meta property="article:section" content="Med Spa">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Should a Med Spa Handle Pricing Calls When the Front Desk Is Busy?">
+  <meta name="twitter:description" content="Most med spa callers lead with a price question, and 68% book with the first provider who answers well. Here is how to handle those calls when your team is in treatment rooms.">
+  <meta name="twitter:image" content="https://www.solreception.com/blog/med-spa-pricing-calls-front-desk-busy-hero.webp">
+
+  <style>
+    :root {
+      --ink: #171311;
+      --surface: #1e1a17;
+      --cream: #FBF6EE;
+      --fg-muted: rgba(251, 246, 238, 0.55);
+      --sun: #F2A93B;
+      --clay: #C75B39;
+      --sage: #2E7D5B;
+      --border: rgba(251, 246, 238, 0.12);
+      --border-strong: rgba(251, 246, 238, 0.18);
+      --pad-x: 2rem;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Fraunces', serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @media (min-width: 1024px) { :root { --pad-x: 6rem; } }
+
+    @font-face { font-family: 'Fraunces'; src: url('../fonts/Fraunces-SemiBold.ttf') format('truetype'); font-weight: 600; }
+    @font-face { font-family: 'Fraunces'; src: url('../fonts/Fraunces-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+    @font-face { font-family: 'Inter'; src: url('../fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400; }
+    @font-face { font-family: 'Inter'; src: url('../fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { margin: 0; padding: 0; background: var(--ink); color: var(--cream); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+
+    a { color: var(--sun); }
+
+    /* ---------- Header ---------- */
+    header.site { height: 88px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--pad-x); border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(23, 19, 17, 0.9); backdrop-filter: blur(20px); z-index: 100; }
+    header.site .brand img { height: 30px; display: block; }
+    header.site .actions { display: flex; align-items: center; gap: 1.75rem; }
+    header.site .actions a.link { font-size: 14px; font-weight: 500; color: var(--fg-muted); text-decoration: none; transition: color 200ms; }
+    header.site .actions a.link:hover { color: var(--cream); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; height: 40px; padding: 0 20px; border-radius: 6px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 200ms var(--ease); border: 1px solid transparent; }
+    .btn-clay { background: var(--clay); color: #fff; }
+    .btn-clay:hover { filter: brightness(1.08); }
+
+    /* ---------- Article ---------- */
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sun); display: flex; align-items: center; gap: 0.75rem; }
+    .eyebrow::before { content: "\2014"; }
+
+    .article-hero { max-width: 820px; margin: 0 auto; padding: 4rem var(--pad-x) 0; }
+    .article-hero .eyebrow { margin-bottom: 1.5rem; }
+    .article-hero h1 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.03em; line-height: 1.06; font-size: clamp(34px, 5.5vw, 60px); margin: 0; }
+    .article-hero h1 em { color: var(--sun); font-style: italic; }
+    .article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; color: var(--fg-muted); font-size: 0.9rem; margin-top: 1.75rem; }
+    .article-meta .dot { opacity: 0.5; }
+
+    .hero-figure { max-width: 1040px; margin: 2.5rem auto 0; padding: 0 var(--pad-x); }
+    .hero-figure img { width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); aspect-ratio: 1200 / 896; object-fit: cover; }
+
+    .article-body { max-width: 720px; margin: 0 auto; padding: 3rem var(--pad-x) 1rem; }
+    .article-body p { color: rgba(251, 246, 238, 0.82); line-height: 1.75; font-size: 1.08rem; margin: 0 0 1.35rem; }
+    .article-body h2 { font-family: var(--font-display); font-weight: 400; color: var(--sun); font-size: clamp(1.5rem, 3vw, 1.9rem); letter-spacing: -0.02em; line-height: 1.15; margin: 3rem 0 1rem; }
+    .article-body strong { color: var(--cream); font-weight: 600; }
+    .article-body ul { margin: 0 0 1.35rem; padding-left: 1.25rem; }
+    .article-body li { color: rgba(251, 246, 238, 0.82); line-height: 1.7; font-size: 1.08rem; margin-bottom: 0.85rem; }
+    .lead { font-size: 1.22rem !important; color: var(--cream) !important; line-height: 1.6 !important; }
+
+    /* ---------- Stat strip ---------- */
+    .stat-strip { max-width: 900px; margin: 2.5rem auto 0.5rem; padding: 0 var(--pad-x); display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1.4rem; }
+    .stat .num { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.6rem); line-height: 1; color: var(--sun); letter-spacing: -0.02em; }
+    .stat .lbl { margin-top: 0.7rem; color: var(--fg-muted); font-size: 0.9rem; line-height: 1.45; }
+    @media (max-width: 720px) { .stat-strip { grid-template-columns: 1fr; } }
+
+    /* ---------- Pull stat inline ---------- */
+    .callout { border-left: 3px solid var(--clay); background: var(--surface); border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem; margin: 1.75rem 0; }
+    .callout p { margin: 0; font-size: 1.05rem !important; color: var(--cream) !important; }
+
+    /* ---------- CTA ---------- */
+    .cta-panel { max-width: 820px; margin: 3.5rem auto 0; padding: 0 var(--pad-x); }
+    .cta-inner { background: linear-gradient(135deg, var(--clay), var(--sun)); border-radius: 20px; padding: 3rem 2.5rem; text-align: center; color: var(--ink); }
+    .cta-inner h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.1; margin: 0 0 0.9rem; color: var(--ink); }
+    .cta-inner p { margin: 0 auto 1.75rem; max-width: 520px; line-height: 1.6; color: rgba(23, 19, 17, 0.82); font-size: 1.05rem; }
+    .cta-inner .btn-cta { display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 34px; border-radius: 9px; background: var(--ink); color: var(--cream); font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform 200ms var(--ease); }
+    .cta-inner .btn-cta:hover { transform: translateY(-2px); }
+
+    /* ---------- FAQ ---------- */
+    .faq { max-width: 720px; margin: 4rem auto 0; padding: 0 var(--pad-x); }
+    .faq > .eyebrow { margin-bottom: 1.5rem; }
+    .faq h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -0.02em; margin: 0 0 2rem; }
+    details.faq-item { border-top: 1px solid var(--border); padding: 1.35rem 0; }
+    details.faq-item[open] { padding-bottom: 1.6rem; }
+    details.faq-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; font-family: var(--font-display); font-size: 1.2rem; color: var(--cream); letter-spacing: -0.01em; }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary .plus { flex: none; width: 24px; height: 24px; position: relative; transition: transform 250ms var(--ease); color: var(--sun); }
+    details.faq-item summary .plus::before, details.faq-item summary .plus::after { content: ""; position: absolute; background: currentColor; border-radius: 2px; }
+    details.faq-item summary .plus::before { top: 11px; left: 3px; right: 3px; height: 2px; }
+    details.faq-item summary .plus::after { left: 11px; top: 3px; bottom: 3px; width: 2px; transition: opacity 250ms var(--ease); }
+    details.faq-item[open] summary .plus::after { opacity: 0; }
+    details.faq-item p { color: rgba(251, 246, 238, 0.78); line-height: 1.7; font-size: 1rem; margin: 1rem 0 0; }
+
+    /* ---------- Footer ---------- */
+    footer.site { border-top: 1px solid var(--border); margin-top: 5rem; padding: 3rem var(--pad-x); text-align: center; color: var(--fg-muted); font-size: 14px; }
+    footer.site a { color: var(--sun); text-decoration: none; }
+    footer.site a:hover { text-decoration: underline; }
+    footer.site .foot-links { margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <header class="site">
+    <a class="brand" href="../index.html" aria-label="Sol Reception home"><img src="../SolReception-Logo-Pack 2/svg/horizontal_white.svg" alt="Sol Reception"></a>
+    <div class="actions">
+      <a class="link" href="index.html">All articles</a>
+      <a class="btn btn-clay" href="https://lnlcrm.com/book/sol-reception">Book a demo</a>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <div class="article-hero">
+        <span class="eyebrow">Med Spa &middot; Guide</span>
+        <h1>How a med spa should handle pricing calls when the front desk is <em>busy</em></h1>
+        <div class="article-meta">
+          <span>September 14, 2026</span>
+          <span class="dot">&middot;</span>
+          <span>7 min read</span>
+          <span class="dot">&middot;</span>
+          <span>Sol Reception</span>
+        </div>
+      </div>
+
+      <figure class="hero-figure">
+        <img src="med-spa-pricing-calls-front-desk-busy-hero.webp" alt="A warm modern med spa treatment room where an aesthetics practitioner leans over a reclined client in the softly blurred mid-ground, while an unattended desk phone with a single lit indicator sits in sharp focus on a clean counter beside a folded towel and a small ceramic tray.">
+      </figure>
+
+      <div class="article-body">
+        <p class="lead">A price question is not a price question. It is a buying signal wrapped in the only thing the caller knows how to ask about. Someone who dials your med spa and opens with &ldquo;how much is Botox&rdquo; has already decided they want the treatment. They are calling to find out whether you are the place that gets to do it.</p>
+
+        <p>Which makes it painful that this is the exact call your team is least able to take. The coordinator is in a room prepping a client. The injector is mid-treatment. It is 7:15 on a Tuesday evening and the phone rolls to a voicemail box that says someone will call back tomorrow. The caller does not leave a message. They dial the next med spa on the map.</p>
+
+        <p><strong>Short answer:</strong> A med spa should answer every pricing call live, give an honest starting range rather than a flat quote, explain that final pricing depends on units and treatment plan, and book a consultation before the call ends. When the front desk is in a treatment room or closed for the day, a <a href="../features/receptionist/">bilingual AI receptionist</a> can take that call in seconds, answer the pricing question within the ranges you set, and put the consult on the calendar so the lead never has to call back.</p>
+
+        <p>Below is what that actually looks like, what those calls are worth, and how to set it up without adding a person to your payroll.</p>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat">
+          <div class="num">68%</div>
+          <div class="lbl">of callers book with the first provider who gives them a positive, informative experience</div>
+        </div>
+        <div class="stat">
+          <div class="num">20-35%</div>
+          <div class="lbl">of inbound volume missed by med spas, by industry estimate</div>
+        </div>
+        <div class="stat">
+          <div class="num">$7,800+</div>
+          <div class="lbl">common lifetime value for a retained aesthetics client</div>
+        </div>
+      </div>
+
+      <div class="article-body">
+        <h2>Why price-shopping calls are the most valuable calls your med spa gets</h2>
+        <p>Aesthetics is a comparison-shopping category. Callers phone two or three providers before they commit, because most med spas do not publish firm prices and the only way to get a number is to ask a human. That behavior is deliberate on the industry's part, and it works, but it only works if a human actually answers.</p>
+        <p>The number that should keep you up at night: roughly 68% of callers book with the first provider who gives them a positive, informative experience. Not the cheapest one. The first good one. Speed is doing most of the work here, and the data on response time is brutal. Reaching a lead within five minutes makes you around 100 times more likely to connect than waiting thirty, and after that thirty minute mark the odds of converting drop by more than 80%.</p>
+        <p>Now put a dollar figure on it. The average med spa visit runs about $500 to $700, and lifetime value for a retained aesthetics client commonly lands north of $7,800 because these are recurring treatments, not one-time purchases. <a href="med-spa-phone-mistakes-losing-new-clients.html">Industry estimates put med spa missed call rates between 20% and 35% of inbound volume</a>.</p>
+        <div class="callout">
+          <p>Run twenty missed calls a month through that math. At a conservative $527 per visit, you are leaving roughly $10,500 a month on the table in first appointments alone, before you count the repeat treatments those clients would have come back for.</p>
+        </div>
+        <p>That is the cost of a phone that rings while everyone is busy doing great work in the back.</p>
+
+        <h2>What should you actually say when a caller asks how much Botox costs?</h2>
+        <p>Do not quote a flat number, and do not refuse to answer. Both lose the call.</p>
+        <p>Refusing loses it because the caller reads &ldquo;we only discuss pricing in consultation&rdquo; as evasion, and they hang up and call someone who will talk. Quoting a flat number loses it because you have turned a clinical decision into a price comparison, and there is always a med spa down the road running a special.</p>
+        <p>The answer that converts is a range plus a reason plus a next step. Something close to this:</p>
+        <div class="callout">
+          <p>&ldquo;Botox with us starts at $13 a unit. Most people treating forehead lines use somewhere between 20 and 30 units, so you are usually looking at $260 to $390 for that area. The exact number depends on your muscle strength and what you want the result to look like, which is why the consultation is complimentary. I have Thursday at 2:00 or Friday at 10:30. Which works better?&rdquo;</p>
+        </div>
+        <p>That response does four things in fifteen seconds. It gives a real number so the caller feels respected. It frames the number as a range so you are not locked in. It explains the variability in clinical terms rather than sales terms. And it closes with two specific times instead of &ldquo;would you like to schedule something,&rdquo; which invites a no.</p>
+        <p>Every med spa knows this script. The problem has never been knowing it. The problem is that nobody is at the desk to say it.</p>
+
+        <h2>Why the front desk cannot cover these calls, and why that is not a staffing failure</h2>
+        <p>Look at when pricing calls actually land. They come in during lunch breaks, right after work, on weekends, and in the evening when someone is scrolling before bed and decides today is the day. Your coordinator works 9 to 5 and spends a good share of those hours in rooms, checking clients out, handling payment plans, and managing the schedule.</p>
+        <p>The overlap between when clients call and when your team can talk is smaller than it looks. Adding a second coordinator does not fix it either, because the gap is mostly evenings and weekends, which is the most expensive coverage to staff and the hardest to hire for.</p>
+        <p>This is where an AI receptionist earns its place. Not as a replacement for the person who knows your clients by name, but as the backup that picks up when that person physically cannot.</p>
+
+        <h2>How does an AI receptionist handle med spa pricing questions?</h2>
+        <p>A well-configured AI receptionist handles a pricing call the same way your best coordinator does, because you define the answers before it ever takes a call.</p>
+        <p>You load your treatment menu with per-unit and per-session starting prices, typical unit ranges by treatment area, package pricing, and your membership tiers. You set the rule that it always quotes a range and always attributes the variance to the consultation. You give it your policy on specials, financing, and deposits.</p>
+        <p>From there the call runs itself. <a href="../index.html">Sol</a> picks up on the first or second ring, greets the caller in English or Spanish depending on how they start speaking, answers the pricing question inside the ranges you set, <a href="../features/insurance/">asks what the caller is hoping to address</a>, and <a href="../features/scheduling/">books the consultation directly into your calendar</a>. It confirms by text before hanging up. The lead notes land in your system before your coordinator is even out of the room.</p>
+        <p>When something falls outside what you configured, a surgical question, a medical history concern, a complaint, it takes the details and routes it to a human rather than improvising. That boundary is the whole point. Sol backs up the team, it never stands in for the clinical judgment your injectors bring.</p>
+
+        <h2>What about callers who only speak Spanish?</h2>
+        <p>You lose those calls twice. Once when nobody answers, and again when someone does answer and cannot hold the conversation.</p>
+        <p>Spanish-speaking clients are a meaningful and growing share of aesthetics demand in most US markets, and very few med spas have bilingual front desk coverage past business hours, if at all. Sol handles the entire pricing call in Spanish, including the unit ranges and the booking, and follows the caller if they switch between languages mid-sentence the way bilingual households actually talk. Your coordinator gets the lead notes in English.</p>
+
+        <h2>What does this look like in dollars?</h2>
+        <p>Take a med spa doing 250 inbound calls a month. At a 25% miss rate, that is about 62 unanswered calls. If even a quarter of those were bookable price-shoppers, you missed roughly 15 first appointments.</p>
+        <p>At $527 per visit, that is about $7,900 in immediate revenue. Carry the ones who would have become regulars out to lifetime value and the number grows considerably. Against that, the cost of 24/7 AI coverage is a fraction of a part-time coordinator's monthly wage, and it does not take lunch, call out sick, or get pulled into a room.</p>
+        <p>You do not need the conversion rate to be perfect. You need it to stop being zero after 5pm.</p>
+
+        <h2>Common objections, answered straight</h2>
+        <p><strong>&ldquo;Clients will know it is not a person.&rdquo;</strong> Some will. What matters more is that they got a real answer in ten seconds instead of a voicemail beep. Callers forgive automation that helps them. They do not forgive being ignored.</p>
+        <p><strong>&ldquo;I do not want prices given out over the phone.&rdquo;</strong> Then configure it not to. Sol can be set to give ranges only, or to skip numbers entirely and move straight to booking the complimentary consult. Your policy, your call.</p>
+        <p><strong>&ldquo;My treatments are too customized for a script.&rdquo;</strong> That is exactly why the range-plus-consultation answer exists. The AI is not diagnosing anyone. It is buying you the appointment where your injector does the actual work.</p>
+        <p><strong>&ldquo;We already have an answering service.&rdquo;</strong> Most answering services take a message. They do not know your unit pricing, they cannot book into your calendar, and they hand you a callback list you work through the next morning, by which point 68% of those callers have already booked somewhere else.</p>
+
+        <h2>Start with the calls you already paid for</h2>
+        <p><a href="med-spa-signs-losing-clients-missed-calls.html">Every price-shopping call is a lead you already bought</a>, through your ads, your Instagram, your Google listing, or a referral. Letting it hit voicemail is the most expensive thing happening in your business today, and it is happening while your team does everything right in the treatment rooms.</p>
+      </div>
+
+      <div class="cta-panel">
+        <div class="cta-inner">
+          <h2>Book a call to see Sol on your med spa line</h2>
+          <p>We will look at your call volume, your after-hours voicemails, and what those pricing calls are actually worth to you.</p>
+          <a class="btn-cta" href="https://lnlcrm.com/book/sol-reception">Book a call</a>
+        </div>
+      </div>
+
+      <section class="faq" aria-labelledby="faq-heading">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-heading">Common questions</h2>
+
+        <details class="faq-item">
+          <summary>How much does Botox cost at a med spa in 2026? <span class="plus" aria-hidden="true"></span></summary>
+          <p>Botox is priced per unit, generally between $9 and $16 per unit depending on the market and the provider, with most US med spas landing around $12 to $14. A typical forehead or glabellar treatment uses 20 to 30 units, which puts a common treatment in the $250 to $450 range. Final pricing depends on muscle strength and the result the client wants, which is why most med spas quote a range on the phone and confirm the exact plan at a complimentary consultation.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Should a med spa give prices over the phone? <span class="plus" aria-hidden="true"></span></summary>
+          <p>Yes, as a range rather than a flat quote. Callers are comparison shopping and interpret a refusal to discuss price as evasion, so a hard &ldquo;we only discuss that in person&rdquo; loses the call. Giving a starting per-unit price, a typical range for the treatment area, and a clear explanation that the final number depends on the individual plan keeps the caller engaged and moves the conversation toward booking a consultation.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How many calls do med spas miss? <span class="plus" aria-hidden="true"></span></summary>
+          <p>Industry estimates put med spa missed call rates between 20% and 35% of inbound volume, with some sources reporting higher. Most of those calls arrive during treatment hours, at lunch, in the evening, and on weekends, when the front desk is either occupied with a client or not in the building. Given that around 68% of callers book with the first provider who answers helpfully, a missed call is usually a permanently lost client rather than a delayed one.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can an AI receptionist book med spa consultations directly into my calendar? <span class="plus" aria-hidden="true"></span></summary>
+          <p>Yes. A modern AI receptionist connects to the practice's scheduling system and books the consultation live during the call, then confirms by text. It can hold service durations, provider availability, and buffer times so that the appointment it books is one the practice can actually honor, and it writes lead notes into the system so the coordinator has context before the client arrives.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Will an AI receptionist replace my front desk coordinator? <span class="plus" aria-hidden="true"></span></summary>
+          <p>No. Sol is built to back up the team, not stand in for it. It answers the calls the coordinator cannot physically take, which are mostly the calls that come in while they are in a treatment room, on another line, or after close. Every relationship, every in-person interaction, and every clinical conversation stays with the human team.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What happens if a caller asks a medical question the AI should not answer? <span class="plus" aria-hidden="true"></span></summary>
+          <p>It stops and routes. A properly configured AI receptionist has explicit boundaries around medical history, contraindications, complications, and anything requiring clinical judgment. When a call crosses that line it captures the details and hands the caller to a human or flags it for immediate callback rather than guessing at an answer.</p>
+        </details>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site">
+    <p>&copy; 2026 Sol Reception (LNL AI Agency)</p>
+    <p class="foot-links"><a href="../index.html">Home</a> &middot; <a href="index.html">Blog</a> &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../terms.html">Terms of Service</a></p>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How Should a Med Spa Handle Pricing Calls When the Front Desk Is Busy?",
+    "description": "Most med spa callers lead with a price question, and 68% book with the first provider who answers well. Here is how to handle those calls when your team is in treatment rooms.",
+    "image": "https://www.solreception.com/blog/med-spa-pricing-calls-front-desk-busy-hero.webp",
+    "datePublished": "2026-09-14",
+    "dateModified": "2026-09-14",
+    "author": { "@type": "Organization", "name": "Sol Reception", "url": "https://www.solreception.com" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Sol Reception",
+      "logo": { "@type": "ImageObject", "url": "https://www.solreception.com/sol-favicon.svg" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.solreception.com/blog/med-spa-pricing-calls-front-desk-busy.html" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does Botox cost at a med spa in 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Botox is priced per unit, generally between $9 and $16 per unit depending on the market and the provider, with most US med spas landing around $12 to $14. A typical forehead or glabellar treatment uses 20 to 30 units, which puts a common treatment in the $250 to $450 range. Final pricing depends on muscle strength and the result the client wants, which is why most med spas quote a range on the phone and confirm the exact plan at a complimentary consultation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should a med spa give prices over the phone?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, as a range rather than a flat quote. Callers are comparison shopping and interpret a refusal to discuss price as evasion, so a hard \"we only discuss that in person\" loses the call. Giving a starting per-unit price, a typical range for the treatment area, and a clear explanation that the final number depends on the individual plan keeps the caller engaged and moves the conversation toward booking a consultation." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many calls do med spas miss?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Industry estimates put med spa missed call rates between 20% and 35% of inbound volume, with some sources reporting higher. Most of those calls arrive during treatment hours, at lunch, in the evening, and on weekends, when the front desk is either occupied with a client or not in the building. Given that around 68% of callers book with the first provider who answers helpfully, a missed call is usually a permanently lost client rather than a delayed one." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can an AI receptionist book med spa consultations directly into my calendar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. A modern AI receptionist connects to the practice's scheduling system and books the consultation live during the call, then confirms by text. It can hold service durations, provider availability, and buffer times so that the appointment it books is one the practice can actually honor, and it writes lead notes into the system so the coordinator has context before the client arrives." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will an AI receptionist replace my front desk coordinator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Sol is built to back up the team, not stand in for it. It answers the calls the coordinator cannot physically take, which are mostly the calls that come in while they are in a treatment room, on another line, or after close. Every relationship, every in-person interaction, and every clinical conversation stays with the human team." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if a caller asks a medical question the AI should not answer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It stops and routes. A properly configured AI receptionist has explicit boundaries around medical history, contraindications, complications, and anything requiring clinical judgment. When a call crosses that line it captures the details and hands the caller to a human or flags it for immediate callback rather than guessing at an answer." }
+      }
+    ]
+  }
+  </script>
+
+  <div id="sol-agent-root" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+  <script type="module" src="/src/main.tsx"></script>
+
+</body>
+</html>
