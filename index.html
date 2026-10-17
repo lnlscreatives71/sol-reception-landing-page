@@ -371,8 +371,8 @@
             </div>
             <div class="calc-result-box">
               <span class="calc-label" style="color: #fff; opacity: 0.8;">Estimated Annual Loss</span>
-              <div class="calc-result-val" id="annual">$327,600</div>
-              <p style="font-size: 12px; opacity: 0.4;">Based on 35% missed and 20% conversion</p>
+              <div class="calc-result-val" id="annual">$294,840</div>
+              <p style="font-size: 12px; opacity: 0.4;">Based on 35% missed and 18% of missed calls winnable</p>
             </div>
             <p style="margin-top: 1.25rem; text-align: center; font-size: 14px;"><a href="sol-missed-call-calculator.html">Open the full calculator</a> to set your own missed-call and conversion rates.</p>
           </div>
@@ -680,7 +680,7 @@
       function update() {
         document.getElementById('callsV').textContent = c.value;
         document.getElementById('valV').textContent = '$' + (+v.value).toLocaleString();
-        const res = c.value * 0.35 * 0.20 * v.value * 26 * 12;
+        const res = c.value * 0.35 * 0.18 * v.value * 26 * 12; // same defaults as the full calculator
         document.getElementById('annual').textContent = '$' + Math.round(res).toLocaleString();
       }
       c.oninput = v.oninput = update;

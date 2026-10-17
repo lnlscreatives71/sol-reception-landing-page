@@ -133,7 +133,7 @@
       <div class="rrow"><span class="lbl">Lost revenue per month</span><span class="amt" id="rMonth">$0</span></div>
 
       <div class="recover">
-        <div class="t">If Sol answered the calls you miss, you could recover about</div>
+        <div class="t">Sol answers the calls you miss, so you recover</div>
         <div class="v" id="recover">$0 / year</div>
       </div>
 
@@ -144,7 +144,7 @@
       </div>
       <div class="okmsg" id="ok">✓ Sent. Check your inbox for your numbers. Gracias.</div>
       <div class="errmsg" id="err"></div>
-      <p class="fine">Estimate based on your inputs. Recovery assumes Sol captures the calls you currently miss. Sol answers in English &amp; Spanish, 24/7.</p>
+      <p class="fine">Estimate based on your inputs. Lost revenue only counts the missed callers you'd have won; callers who weren't going to buy aren't counted. Sol answers every call you currently miss, so that revenue comes back. Sol answers in English &amp; Spanish, 24/7.</p>
     </div>
   </div>
 
@@ -177,7 +177,9 @@
     var lostCustMonth=missedPerDay*cv*26;   // ~26 open days/month
     var lostRevMonth=lostCustMonth*v;
     var lostRevYear=lostRevMonth*12;
-    var recovered=lostRevYear*0.7;          // conservative: Sol recovers ~70% of missed-call value
+    // Sol answers every call you miss. Lost revenue only counts the missed callers
+    // you'd have won (conv), so all of it comes back. Loss and recovery share one base.
+    var recovered=lostRevYear;
 
     document.getElementById('rMissed').textContent=missedPerDay.toFixed(1);
     document.getElementById('rLostMo').textContent=lostCustMonth.toFixed(1);
@@ -223,7 +225,7 @@
             avgCustomerValue: v,
             percentWinnable: +conv.value,
             estimatedAnnualLoss: Math.round(lostRevYear),
-            estimatedAnnualRecovery: Math.round(lostRevYear*0.7)
+            estimatedAnnualRecovery: Math.round(lostRevYear)
           }
         })
       });
