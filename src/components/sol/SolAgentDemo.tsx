@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { RoomAudioRenderer, LiveKitRoom, useVoiceAssistant, useAgentExpression } from '@livekit/components-react';
+import { RoomAudioRenderer, StartAudio, LiveKitRoom, useVoiceAssistant, useAgentExpression } from '@livekit/components-react';
 import { AgentAudioVisualizerRadial } from '@/components/agents-ui/agent-audio-visualizer-radial';
 
 export const MOOD_COLORS: Record<string, string> = {
@@ -105,6 +105,7 @@ function LiveSession({ onEnd }: { onEnd: () => void }) {
       <div className="flex flex-col items-center gap-4">
         <Demo />
         <RoomAudioRenderer />
+        <StartAudio label="Click to unmute Sol" className="text-xs px-3 py-1 bg-[#F2A93B]/20 text-[#F2A93B] border border-[#F2A93B]/40 rounded-full hover:bg-[#F2A93B]/30 cursor-pointer transition-colors" />
         <button
           onClick={onEnd}
           className="inline-flex items-center gap-2 bg-[#F2A93B]/10 text-[#F2A93B] border border-[#F2A93B]/40 hover:bg-[#F2A93B]/20 font-semibold px-5 py-2.5 rounded-full transition-colors text-sm shadow-md"

@@ -33,8 +33,11 @@
   .logo{font-family:'Fraunces',serif; font-weight:600; font-size:34px; display:inline-flex; align-items:center; gap:11px; color:var(--ink); text-decoration:none; cursor:pointer; transition:opacity .15s ease}
   .logo:hover{opacity:.72}
   .logo .sun{width:28px; height:28px; border-radius:50%; background:var(--sun); flex:none}
-  .head{padding:28px 36px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px}
+  .head{padding:24px 36px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px}
   .head .tag{font-size:13px; color:var(--muted)}
+  .head-right{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+  .back-home-btn{display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:var(--ink); text-decoration:none; padding:8px 16px; border-radius:8px; border:1px solid var(--line); background:var(--card); transition:all .15s ease}
+  .back-home-btn:hover{border-color:var(--sun); background:var(--cream); color:var(--clay)}
   .body{display:grid; grid-template-columns:1fr 1fr; gap:0}
   .inputs{padding:36px}
   .results{padding:36px; background:var(--ink); color:var(--cream)}
@@ -82,7 +85,10 @@
 <div class="card">
   <div class="head">
     <a class="logo" href="index.html" aria-label="Back to Sol Reception home"><span class="sun"></span> sol</a>
-    <div class="tag">Complimentary tool · Missed-Call Revenue Calculator</div>
+    <div class="head-right">
+      <span class="tag">Complimentary tool · Missed-Call Revenue Calculator</span>
+      <a href="index.html" class="back-home-btn">← Back to home</a>
+    </div>
   </div>
 
   <div class="body">
@@ -137,9 +143,9 @@
         <div class="v" id="recover">$0 / year</div>
       </div>
 
-      <button class="cta" id="cta">Stop the leak, get early access</button>
+      <button class="cta" id="cta">Stop the leak, get free month</button>
       <div class="capture" id="capture">
-        <input type="email" id="email" placeholder="Email me my results + early access">
+        <input type="email" id="email" placeholder="Email me my results + get free month">
         <button class="cta" style="width:auto; margin:0; padding:13px 18px" id="send">Send</button>
       </div>
       <div class="okmsg" id="ok">✓ Sent. Check your inbox for your numbers. Gracias.</div>
@@ -148,7 +154,7 @@
     </div>
   </div>
 
-  <div class="foot">Sol · The bilingual AI receptionist that never misses a call · Share this with an owner who's bleeding leads.</div>
+  <div class="foot">Sol · The bilingual AI receptionist that never misses a call · <a href="index.html" style="color:var(--ink); font-weight:600; text-decoration:underline;">Back to home</a></div>
 </div>
 
 <script>

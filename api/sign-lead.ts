@@ -11,6 +11,7 @@ const CRM_URL = "https://lnlcrm.com/api/webhooks/leads";
 const ORIGIN_ALLOWLIST = [
   /^https:\/\/solreception\.com$/,
   /^https:\/\/www\.solreception\.com$/,
+  /^https:\/\/([a-z0-9-]+\.)?solreception\.tech$/,
   /^https:\/\/[a-z0-9-]*sol-reception[a-z0-9-]*\.vercel\.app$/,
   /^http:\/\/localhost(:\d+)?$/,
 ];

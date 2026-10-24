@@ -44,3 +44,4 @@
 !src/
 !src/**
 .vercel
+.env*
